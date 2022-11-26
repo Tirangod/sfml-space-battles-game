@@ -1,8 +1,12 @@
 #include "game/Game.hpp"
 
 Game::Game() :
-    window(RenderWindow(VideoMode(1280, 720), "Super puper game"))
-{
+    window(RenderWindow(VideoMode(1280, 720), "Super puper game")),
+    global(Global::get())
+{   
+    global.windowSize.x = window.getSize().x;
+    global.windowSize.y = window.getSize().y;
+    
     objects.reserve(100);
 
     Player *player = new Player;
@@ -23,6 +27,7 @@ void Game::drawObjects() {
 }
 
 void Game::run() {
+    float dt = 0;
 
     while (window.isOpen()) {
         Event event;
@@ -31,14 +36,27 @@ void Game::run() {
                 case Event::Closed:
                     window.close();
                 break;
+                case Event::Resized:
+                    int width = event.size.width;
+                    int height = event.size.height;
+
+                    window.setView(View({(float)width/2, (float)height/2}, {(float)width, (float)height}));
+
+                    global.windowSize.x = width;
+                    global.windowSize.y = height;
+                break;
             }
         }
 
-        window.clear();
+        window.clear({123, 56, 77});
 
-        updateObjects(0);
+        updateObjects(dt);
         drawObjects();
 
         window.display();
+
+        dt = clock.getElapsedTime().asSeconds();
+
+        clock.restart();
     }
 }
