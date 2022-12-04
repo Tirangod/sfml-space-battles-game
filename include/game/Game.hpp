@@ -3,12 +3,16 @@
 
 #include <iostream>
 #include <vector>
+
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "GameObject.hpp"
-#include "Player.hpp"
-#include "Global.hpp"
+#include "entities/Player.hpp"
+#include "entities/Enemy.hpp"
+#include "engine/ObjectsPool.hpp"
+#include "engine/GameObject.hpp"
+#include "engine/Global.hpp"
+
 
 using namespace sf;
 using namespace std;
@@ -16,9 +20,8 @@ using namespace std;
 class Game {
 private:
     RenderWindow window;
-    vector<GameObject*> objects;
     Clock clock;
-    Global& global;
+    Global::WindowInfo& winInfo;
 
     void checkCollision();
     void updateObjects(float dt);
