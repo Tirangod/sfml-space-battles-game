@@ -33,21 +33,25 @@ void ObjectsPool::killObject(GameObject *object) {
             return;
         }
     }
+    self.objects.remove(object);
 
     object->onKilled();
 }
 
-void ObjectsPool::clearRefs() {
+void ObjectsPool::clearObjects() {
     auto &self = get();
 
     for (int i = 0; i < self.indexes.size(); i++) {
-        auto objPos = self.objects.begin() + self.indexes[i];
-        auto obj = *objPos;
+        int index = self.indexes[i];
+        auto objPos = self.objects.begin();
+        auto obj = &(*objPos);
         self.objects.erase(objPos);
-        //obj->onDeleted();
-        delete obj;
+        delete *obj;
     }
     self.indexes.clear();
+    
+    // LOGGING
+    cout << "ObjectsPool::clearObjects" << endl;
 }
 
 void ObjectsPool::flush() {
@@ -60,6 +64,7 @@ void ObjectsPool::flush() {
         self.objects.push_back(*it);
     }
     self.buffer.clear();
+    
 }
 
 ObjectsVector ObjectsPool::getObjects() { return get().objects; }

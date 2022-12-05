@@ -1,6 +1,6 @@
-#include <engine/ui/ProgressBar.hpp>
+#include <engine/ui/UIProgressBar.hpp>
 
-ProgressBar::ProgressBar(float startValue, float maxValue) 
+UIProgressBar::UIProgressBar(float startValue, float maxValue) 
 {
     if (maxValue > 0) {
         max = maxValue;
@@ -25,32 +25,30 @@ ProgressBar::ProgressBar(float startValue, float maxValue)
 }
 
 // Invokes when progressbar size or proress changes
-void ProgressBar::updateSize() {
+void UIProgressBar::updateSize() {
     float maxWidth = background.getSize().x;
     foreground.setSize({maxWidth * getProgress(), background.getSize().y});
 }
 
-void ProgressBar::draw(RenderTarget& target) {
+void UIProgressBar::draw(RenderTarget& target) {
     target.draw(background);
     target.draw(foreground);
 }
 
-void ProgressBar::add(float amount) {
+void UIProgressBar::add(float amount) {
     float tempValue = value + amount;
 
     if (tempValue >= max) {
-        value = max;
-        return;
+        tempValue = max;
     }else if (tempValue <= 0){
-        value = 0;
-        return;
+        tempValue = 0;
     }
 
-    value = tempValue;
+    setValue(tempValue);
     updateSize();
 }
 
-void ProgressBar::setValue(float value) {
+void UIProgressBar::setValue(float value) {
     if (value < 0 || value > max) {
         throw "Value is incorrect";
         return;
@@ -60,15 +58,21 @@ void ProgressBar::setValue(float value) {
     updateSize();
 }
 
-void ProgressBar::setPosition(Vector2f pos) {
+void UIProgressBar::setPosition(Vector2f pos) {
     foreground.setPosition(pos);
     background.setPosition(pos);
 }
 
-void ProgressBar::setSize(Vector2f size) {
+void UIProgressBar::setSize(Vector2f size) {
     foreground.setSize(size);
     background.setSize(size);
     updateSize();
 }
 
-float ProgressBar::getProgress() { return value / max; }
+float UIProgressBar::getProgress() { return value / max; }
+
+FloatRect UIProgressBar::getBounds() { return background.getLocalBounds(); }
+Vector2f UIProgressBar::getSize() { return background.getSize(); }
+RectangleShape UIProgressBar::getForeground() { return foreground; }
+RectangleShape UIProgressBar::getBackground() { return background; }
+

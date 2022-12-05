@@ -1,7 +1,7 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
 
-#include "engine/ui/ProgressBar.hpp"
+#include "engine/ui/UIProgressBar.hpp"
 #include "engine/GameObject.hpp"
 #include "engine/Utils.hpp"
 #include "game/entities/Bullet.hpp"
@@ -12,7 +12,7 @@ private:
     float speed;
     float hp;
 
-    ProgressBar healthBar;
+    UIProgressBar healthBar;
 public:
     Enemy();
     void onCollisionStay(GameObject *object);

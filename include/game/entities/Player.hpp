@@ -6,8 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "engine/ui/ProgressBar.hpp"
-#include "engine/ParticleSystem.hpp"
+#include "engine/vfx/ParticleSystem.hpp"
+#include "engine/ui/UIProgressBar.hpp"
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
 #include "engine/Global.hpp"
@@ -22,13 +22,12 @@ private:
     float speed;
     float hp;
 
-    Particles::System particles;
-
     bool isShooting = false;
     float shootingCooldown = 0.f;
     float shootingDelay = 20.f;
 
-    ProgressBar healthBar;
+    Particles::System sys;
+    UIProgressBar healthBar;
 
     void onShot();
     void shooting(float dt);

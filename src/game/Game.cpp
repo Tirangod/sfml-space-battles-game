@@ -21,6 +21,7 @@ void Game::checkCollision() {
 
     for (int i = 0; i < size; i++) {
         obj1 = ObjectsPool::getObjects().at(i);
+
         rect1 = obj1->getSprite().getGlobalBounds();
 
         for (int j = i + 1; j < size; j++) {
@@ -33,18 +34,22 @@ void Game::checkCollision() {
             }
         }
     }
+    
 }
+
 
 void Game::updateObjects(float dt) {
     for (auto object : ObjectsPool::getObjects())
         if (object->isActive())
             object->_update(dt);
+        
 }
 
 void Game::drawObjects() {
     for (auto object : ObjectsPool::getObjects())
         if (object->isVisible())
             object->_draw(window);
+    
 }
 
 void Game::run() {
@@ -78,8 +83,8 @@ void Game::run() {
         updateObjects(dt);
         drawObjects();
 
-        ObjectsPool::clearRefs();
-        ObjectsPool::flush();
+        //ObjectsPool::clearObjects();
+        //ObjectsPool::flush();
 
         window.display();
 

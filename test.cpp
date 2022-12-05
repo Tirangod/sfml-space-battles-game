@@ -7,27 +7,23 @@
 
 using namespace std;
 
-class Object {
-public:
-    ~Object() {
-        cout << "Object deleted" << endl;
-    }
-};
-
-class SomeClass : public Object {
-public:
-    virtual ~SomeClass() {
-        cout << "SomeClass deleted" << endl;
-    }
-};
 
 int main() {
 
-    auto c = new SomeClass;
+    list<int> ls = {10, 8, 6, 4, 2, 0};
 
-    cout << typeid(SomeClass).name() << endl;
-    auto str = string(typeid(c).name());
-    cout << str.substr(1, str.length()) << endl;
+    int i = 0;
+    for (auto it = ls.begin(); it != ls.end(); ++it) {
+        if (i == 2) {
+            ls.remove()
+        }
+        cout << *it << endl;
+        i++;
+    }
+    cout << "-----------" << endl;
+    for (auto it = ls.begin(); it != ls.end(); ++it) {
+        cout << *it << endl;
+    }
 
     return EXIT_SUCCESS;
 }

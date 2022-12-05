@@ -4,7 +4,7 @@
 #include <array>
 #include <SFML/Graphics.hpp>
 
-#include "GameObject.hpp"
+#include "engine/GameObject.hpp"
 
 using namespace sf;
 using namespace std;

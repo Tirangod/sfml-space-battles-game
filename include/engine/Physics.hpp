@@ -5,8 +5,9 @@
 
 class Physics {
 private:
-
+    
 public:
+    void update(float dt);
 };
 
 #endif

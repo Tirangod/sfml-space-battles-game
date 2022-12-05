@@ -22,7 +22,7 @@ public:
 
     static void addObject(GameObject *object);
     static void killObject(GameObject *object);
-    static void clearRefs();
+    static void clearObjects();
     static void flush();
 
     static ObjectsVector getObjects();

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "GameSprite.hpp"
 
 using namespace std;
 using namespace sf;
