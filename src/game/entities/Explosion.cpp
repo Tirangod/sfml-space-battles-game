@@ -1,6 +1,6 @@
 #include <game/entities/Explosion.hpp>
 
-Explosion::Explosion() {
+void Explosion::onInit() {
     setupTexture("assets/sprites/anim.png");
     //getSprite().setPosition(pos);
     auto &animator = getSprite().getAnimator();

@@ -1,14 +1,15 @@
 #include "game/entities/Player.hpp"
 
 
-Player::Player()
-: hp(60), healthBar({hp, 100})
-{
+void Player::onInit() {
     setupTexture("assets/sprites/metalic_02.png");
 
     getSprite().alignCenter();
     getSprite().setPosition(250, 250);
     getSprite().setScale(1.5f, 1.5f);
+
+    hp = 60;
+    healthBar = {hp, 100};
 
     healthBar.setSize({getSprite().getLocalBounds().width * 2, 7});
 

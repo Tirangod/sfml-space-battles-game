@@ -45,6 +45,10 @@ void GameObject::onUpdate(float dt) {}
 void GameObject::onDraw(RenderTarget &target) {}
 void GameObject::onKilled() {}
 
+bool GameObject::intersects(GameObject *other) {
+    return getBounds().intersects(other->getBounds());
+}
+
 /*
 template<class T>
 GameObject& GameObject::spawn(Vector2f pos, Vector2f scale, float rot) {
@@ -99,6 +103,7 @@ void GameObject::disable() {
 
 bool GameObject::isActive() { return active; }
 bool GameObject::isVisible() { return visible; }
+FloatRect GameObject::getBounds() { return sprite.getGlobalBounds(); }
 Texture& GameObject::getTexture() { return texture; }
 GameSprite& GameObject::getSprite() { return sprite; }
 

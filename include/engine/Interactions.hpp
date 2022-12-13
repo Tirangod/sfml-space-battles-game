@@ -9,6 +9,7 @@ private:
     
 public:
     static void update(float dt);
+    
 };
 
 #endif

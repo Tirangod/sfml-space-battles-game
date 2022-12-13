@@ -11,7 +11,8 @@ class Explosion : public GameObject {
 private:
     Clock timer;
 public:
-    Explosion();
+    Explosion() {}
+    void onInit();
     void onUpdate(float dt);
 };
 

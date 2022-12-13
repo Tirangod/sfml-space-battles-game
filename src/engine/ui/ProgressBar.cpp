@@ -73,7 +73,7 @@ void UIProgressBar::setSize(Vector2f size) {
 float UIProgressBar::getProgress() { return value / max; }
 float UIProgressBar::getValue() { return value; }
 
-FloatRect UIProgressBar::getBounds() { return background.getLocalBounds(); }
+FloatRect UIProgressBar::getBounds() { return background.getGlobalBounds(); }
 Vector2f UIProgressBar::getSize() { return background.getSize(); }
 RectangleShape UIProgressBar::getForeground() { return foreground; }
 RectangleShape UIProgressBar::getBackground() { return background; }

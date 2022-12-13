@@ -33,7 +33,8 @@ private:
     void controll();
     void move(float dt);
 public:
-    Player();
+    Player() {}
+    void onInit();
     void onDraw(RenderTarget &target);
     void onUpdate(float dt);
 };

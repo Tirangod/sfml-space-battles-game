@@ -14,7 +14,8 @@ private:
 
     UIProgressBar healthBar;
 public:
-    Enemy();
+    Enemy() {}
+    void onInit();
     void onCollisionEnter(GameObject *object);
     void onCollisionStay(GameObject *object);
     void onDraw(RenderTarget &target);

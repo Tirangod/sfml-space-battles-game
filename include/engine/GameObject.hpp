@@ -41,6 +41,7 @@ public:
     virtual void onDraw(RenderTarget &target);
     virtual void onKilled();
     //virtual void onDeleted();
+    virtual bool intersects(GameObject *other);
     
     /*
     template<class T>
@@ -62,7 +63,7 @@ public:
     
     bool isActive();
     bool isVisible();
-    RectangleShape& getBounds();
+    FloatRect getBounds();
     Texture& getTexture();
     GameSprite& getSprite();
 };

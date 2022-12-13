@@ -1,14 +1,15 @@
 #include <game/entities/Enemy.hpp>
 
-Enemy::Enemy()
-: hp(100), healthBar({hp, 100})
-{
+void Enemy::onInit() {
     setupTexture("assets/sprites/red_01.png");
     
     getSprite().alignCenter();
     getSprite().rotate(180);
-    getSprite().setPosition(450, 200);
+    //getSprite().setPosition(450, 200);
     getSprite().setScale(1.5f, 1.5f);
+
+    hp = 100;
+    healthBar = {hp, 100};
 
     float yOffset = -getSprite().getLocalBounds().height;
 
@@ -25,7 +26,7 @@ void Enemy::onDraw(RenderTarget &target) {
 }
 
 void Enemy::onCollisionEnter(GameObject *object) {
-
+    cout << "ONCE" << endl;
 }
 
 void Enemy::onCollisionStay(GameObject *object) {

@@ -20,8 +20,8 @@ class Bullet : public GameObject {
     Vector2f moveDir;
     float speed;
 public:
-    Bullet();
-    
+    Bullet() {}
+    void onInit();
     void onUpdate(float dt);
     void onCollisionStay(GameObject *object);
 };

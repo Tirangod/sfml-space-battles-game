@@ -8,9 +8,13 @@ Game::Game() :
     window.setFramerateLimit(120);
 
     Player *player = new Player;
-    Enemy *enemy = new Enemy;
     ObjectsPool::addObject(player);
-    ObjectsPool::addObject(enemy);
+
+    for (int i = 0; i < 10; i++) {
+        Enemy *enemy = new Enemy;
+        enemy->getSprite().setPosition({(float)(150 + 100 * i), 100.f});
+        ObjectsPool::addObject(enemy);
+    }
 }
 
 

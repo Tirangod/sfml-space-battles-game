@@ -17,6 +17,7 @@ class UIProgressBar : public UIComponent {
 
     void updateSize();
 public:
+    UIProgressBar() = default;
     UIProgressBar(float startValue, float max);
 
     void _draw(RenderTarget& target);

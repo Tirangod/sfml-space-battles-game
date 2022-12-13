@@ -1,6 +1,6 @@
 #include <game/entities/Bullet.hpp>
 
-Bullet::Bullet() {
+void Bullet::onInit() {
     setupTexture("assets/sprites/bullet_15.png");
     //setupShader("assets/pixelate.frag");
 
