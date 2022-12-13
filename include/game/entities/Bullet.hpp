@@ -8,17 +8,20 @@
 
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
-#include "engine/Global.hpp"
+#include "engine/WindowInfo.hpp"
+#include "game/entities/Explosion.hpp"
+#include "game/entities/Enemy.hpp"
 
 using namespace std;
 using namespace sf;
 
 class Bullet : public GameObject {
+    Clock timer;
     Vector2f moveDir;
     float speed;
 public:
-    Bullet(Vector2f pos);
-    ~Bullet();
+    Bullet();
+    
     void onUpdate(float dt);
     void onCollisionStay(GameObject *object);
 };

@@ -4,8 +4,9 @@
 Player::Player()
 : hp(60), healthBar({hp, 100})
 {
-    loadTexture("assets/metalic_02.png");
-    centerSprite();
+    setupTexture("assets/sprites/metalic_02.png");
+
+    getSprite().alignCenter();
     getSprite().setPosition(250, 250);
     getSprite().setScale(1.5f, 1.5f);
 
@@ -13,15 +14,16 @@ Player::Player()
 
     speed = 400.f;
 
-    isShooting = false;
     shootingDelay = 40.f;
-    shootingCooldown = 0.f;
+    canShooting = true;
+    isShooting = false;
+    shootingCooldown = 0;
 }
 
 void Player::move(float dt) {
     bool topBound       = getSprite().getPosition().y - getSprite().getLocalBounds().height/2 >= 0;
-    bool bottomBound    = getSprite().getPosition().y + getSprite().getLocalBounds().height/2 <= Global::WindowInfo::getWindowSize().y;
-    bool rightBound     = getSprite().getPosition().x + getSprite().getLocalBounds().width/2  <= Global::WindowInfo::getWindowSize().x;
+    bool bottomBound    = getSprite().getPosition().y + getSprite().getLocalBounds().height/2 <= WindowInfo::getWindowSize().y;
+    bool rightBound     = getSprite().getPosition().x + getSprite().getLocalBounds().width/2  <= WindowInfo::getWindowSize().x;
     bool leftBound      = getSprite().getPosition().x - getSprite().getLocalBounds().width/2  >= 0;
     
     if (Keyboard::isKeyPressed(Keyboard::W) && topBound) {
@@ -52,20 +54,25 @@ void Player::move(float dt) {
 
 
 void Player::onShot() {
-    ObjectsPool::addObject(new Bullet({getSprite().getPosition().x, getSprite().getPosition().y - 50.f}));
+    auto &bullet = spawn(new Bullet);
+    bullet.getSprite().setPosition({getSprite().getPosition().x, getSprite().getPosition().y - 60.f});
 }
 
 void Player::shooting(float dt) {
-    isShooting = Keyboard::isKeyPressed(Keyboard::Space); // Alternative: Mouse::isButtonPressed(Mouse::Left);
+    isShooting = Keyboard::isKeyPressed(Keyboard::Space);
 
-    if (isShooting) {
-        if (shootingCooldown >= shootingDelay) {
+    if (canShooting) {
+        if (isShooting) {
+            canShooting = false;
             shootingCooldown = 0;
             onShot();
         }
-        shootingCooldown += 250.f * dt; // Remove magic constant
     } else {
-        shootingCooldown = 0;
+        if (shootingCooldown <= shootingDelay) {
+            shootingCooldown += 250.f * dt;
+        } else {
+            canShooting = true;
+        }
     }
 }
 
@@ -75,5 +82,5 @@ void Player::onUpdate(float dt) {
 }
 
 void Player::onDraw(RenderTarget &target) {
-    healthBar.draw(target);
+    healthBar._draw(target);
 }

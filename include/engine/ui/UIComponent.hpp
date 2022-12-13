@@ -3,13 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
+
 using namespace sf;
 
 class UIComponent {
-
+private:
+    bool focused;
+    bool inFocus;
 public:
-    void onDraw()
-    
+    void _draw(RenderTarget& target);
+    void _update(float dt);
 };
 
 

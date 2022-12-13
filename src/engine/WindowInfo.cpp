@@ -1,6 +1,4 @@
-#include <engine/Global.hpp>
-
-using namespace Global;
+#include <engine/WindowInfo.hpp>
 
 WindowInfo *WindowInfo::instance = nullptr;
 
@@ -10,6 +8,7 @@ WindowInfo& WindowInfo::get() {
     
     return *instance;
 }
+
 void WindowInfo::setWindowSize(Vector2u size) {
     windowSize = size;
 }
@@ -19,4 +18,3 @@ bool WindowInfo::isOutofScreen(Vector2f pos) {
 Vector2u WindowInfo::getWindowSize() {
     return get().windowSize;
 }
-

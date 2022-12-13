@@ -3,7 +3,7 @@
 
 #include "engine/ui/UIProgressBar.hpp"
 #include "engine/GameObject.hpp"
-#include "engine/Utils.hpp"
+#include "game/entities/Explosion.hpp"
 #include "game/entities/Bullet.hpp"
 
 class Enemy : public GameObject {
@@ -15,6 +15,7 @@ private:
     UIProgressBar healthBar;
 public:
     Enemy();
+    void onCollisionEnter(GameObject *object);
     void onCollisionStay(GameObject *object);
     void onDraw(RenderTarget &target);
 };

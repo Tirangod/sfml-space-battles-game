@@ -3,12 +3,13 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "UIComponent.hpp"
 
 using namespace std;
 using namespace sf;
 
 // TODO: implement UIComponent
-class UIProgressBar /*: public UIComponent */ {
+class UIProgressBar : public UIComponent {
     float value;
     float max;
     RectangleShape foreground;
@@ -18,14 +19,17 @@ class UIProgressBar /*: public UIComponent */ {
 public:
     UIProgressBar(float startValue, float max);
 
-    void draw(RenderTarget& target);
+    void _draw(RenderTarget& target);
+    void _update(float dt);
 
     void add(float amount);
     void setValue(float value);
-    float getProgress();
     
     void setPosition(Vector2f pos);
     void setSize(Vector2f size);
+    
+    float getProgress();
+    float getValue();
 
     FloatRect getBounds();
     Vector2f getSize();

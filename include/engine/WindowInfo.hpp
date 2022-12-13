@@ -1,22 +1,9 @@
-#ifndef GLOBAL_HPP
-#define GLOBAL_HPP
-
-#include <vector>
+#ifndef WINDOWINFO_HPP
+#define WINDOWINFO_HPP
 
 #include <SFML/System.hpp>
-#include "GameObject.hpp"
 
-using namespace std;
 using namespace sf;
-
-/**
- * Class for storing global information
-*/
-namespace Global {
-
-class EntitiesInfo {
-
-};
 
 class WindowInfo {
     static WindowInfo *instance;
@@ -31,7 +18,5 @@ public:
 
     WindowInfo& operator =(WindowInfo&) = delete;
 };
-
-}
 
 #endif

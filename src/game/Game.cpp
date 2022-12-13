@@ -1,40 +1,16 @@
 #include <game/Game.hpp>
 
 Game::Game() :
-    window(RenderWindow(VideoMode(1280, 720), "Super puper game")),
-    winInfo(Global::WindowInfo::get())
+    window(RenderWindow(VideoMode(1280, 720), "Super puper game"))
 {   
-    winInfo.setWindowSize(window.getSize());
-    ObjectsPool::init(100);
+    WindowInfo::get().setWindowSize(window.getSize());
+
+    window.setFramerateLimit(120);
 
     Player *player = new Player;
     Enemy *enemy = new Enemy;
     ObjectsPool::addObject(player);
     ObjectsPool::addObject(enemy);
-}
-
-void Game::checkCollision() {
-    GameObject *obj1, *obj2;
-    FloatRect rect1, rect2;
-
-    size_t size = ObjectsPool::getObjects().size();
-
-    for (int i = 0; i < size; i++) {
-        obj1 = ObjectsPool::getObjects().at(i);
-
-        rect1 = obj1->getSprite().getGlobalBounds();
-
-        for (int j = i + 1; j < size; j++) {
-            obj2 = ObjectsPool::getObjects().at(j);
-            rect2 = obj2->getSprite().getGlobalBounds();
-
-            if (rect1.intersects(rect2)) {
-                obj1->onCollisionStay(obj2);
-                obj2->onCollisionStay(obj1);
-            }
-        }
-    }
-    
 }
 
 
@@ -69,27 +45,25 @@ void Game::run() {
                     int height = event.size.height;
 
                     window.setView(View({(float)width/2, (float)height/2}, {(float)width, (float)height}));
-                    
-                    winInfo.setWindowSize({(unsigned)width, (unsigned)height});
+                    WindowInfo::get().setWindowSize({(unsigned)width, (unsigned)height});
                 break;
             }
         }
-        //clock.restart(); // Clock starts to measure time
-
         window.clear(DEFAULT_COLOR);
-
-        checkCollision();
-
+        Interactions::update(dt);
         updateObjects(dt);
         drawObjects();
-
-        //ObjectsPool::clearObjects();
-        //ObjectsPool::flush();
-
+        ObjectsPool::clearEmptySpace();
         window.display();
 
         dt = clock.getElapsedTime().asSeconds();
-
-        clock.restart(); // Clock ends to measure time
+        if (time >= 1.f) {
+            window.setTitle("FPS: " + to_string(frames));
+            frames = 0;
+            time = 0;
+        }
+        time += dt;
+        frames++;
+        clock.restart(); // resets Clock time counter
     }
 }

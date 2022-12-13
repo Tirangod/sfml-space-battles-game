@@ -6,11 +6,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "engine/vfx/ParticleSystem.hpp"
 #include "engine/ui/UIProgressBar.hpp"
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
-#include "engine/Global.hpp"
+#include "engine/WindowInfo.hpp"
 #include "Bullet.hpp"
 
 using namespace sf;
@@ -22,11 +21,11 @@ private:
     float speed;
     float hp;
 
-    bool isShooting = false;
-    float shootingCooldown = 0.f;
-    float shootingDelay = 20.f;
+    bool canShooting;
+    bool isShooting;
+    float shootingCooldown;
+    float shootingDelay;
 
-    Particles::System sys;
     UIProgressBar healthBar;
 
     void onShot();

@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
+#include "Interactable.hpp"
+#include "ObjectsPool.hpp"
 #include "GameSprite.hpp"
 
 using namespace std;
@@ -12,45 +15,56 @@ using namespace sf;
  * GameObject is interface that represents graphical object
  * in game world and its behaviour.
 */
-class GameObject {
+class GameObject : public Interactable {
 private:
-    long typeHash; 
     bool active;
     bool visible;
+    
     Texture texture;
-    Sprite sprite;
+    GameSprite sprite;
+
+    //Shader shader;
+    RenderStates renderStates;
 
     RectangleShape boundsRect;
 public:
+    static GameObject *EMPTY;
+
     /* Internal lifecycle methods */
     void _init();
     void _update(float dt);
     void _draw(RenderTarget &target);
 
     /* Users events */
-    virtual void onInit() {}
-    virtual void onUpdate(float dt) {}
-    virtual void onDraw(RenderTarget &target) {}
-    virtual void onCollisionStay(GameObject *other) {}
-    //virtual void onCollisionEnter(GameObject *other) {}
-    //virtual void onCollisionExit(GameObject *other) {}
-    virtual void onKilled() {}
-    //virtual void onDeleted() {}
+    virtual void onInit();
+    virtual void onUpdate(float dt);
+    virtual void onDraw(RenderTarget &target);
+    virtual void onKilled();
+    //virtual void onDeleted();
+    
+    /*
+    template<class T>
+    GameObject& spawn(Vector2f pos, Vector2f scale, float rot);
+    */
+    GameObject& spawn(GameObject *object);
+    void destroy(GameObject *object);
 
-    void loadTexture(string path);
-    void centerSprite();
+    void move(Vector2f velocity);
+
+    void setupTexture(string path);
+    //void setupShader(string path);
 
     void setActive(bool flag);
     void setVisibile(bool flag);
-    void setTypeHash(long hash);
+
+    void enable();
+    void disable();
     
     bool isActive();
     bool isVisible();
     RectangleShape& getBounds();
     Texture& getTexture();
-    Sprite& getSprite();
-    //Utils::TypeHash getTypeHash();
-
+    GameSprite& getSprite();
 };
 
 #endif

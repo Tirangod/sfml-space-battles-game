@@ -7,11 +7,12 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-#include "entities/Player.hpp"
-#include "entities/Enemy.hpp"
+#include "engine/Interactions.hpp"
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
-#include "engine/Global.hpp"
+#include "engine/WindowInfo.hpp"
+#include "entities/Player.hpp"
+#include "entities/Enemy.hpp"
 
 
 using namespace sf;
@@ -21,7 +22,9 @@ class Game {
 private:
     RenderWindow window;
     Clock clock;
-    Global::WindowInfo& winInfo;
+    
+    int frames = 0;
+    float time = 0;
 
     void checkCollision();
     void updateObjects(float dt);

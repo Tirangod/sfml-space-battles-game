@@ -30,10 +30,12 @@ void UIProgressBar::updateSize() {
     foreground.setSize({maxWidth * getProgress(), background.getSize().y});
 }
 
-void UIProgressBar::draw(RenderTarget& target) {
+void UIProgressBar::_draw(RenderTarget& target) {
     target.draw(background);
     target.draw(foreground);
 }
+
+void UIProgressBar::_update(float dt) { }
 
 void UIProgressBar::add(float amount) {
     float tempValue = value + amount;
@@ -44,8 +46,7 @@ void UIProgressBar::add(float amount) {
         tempValue = 0;
     }
 
-    setValue(tempValue);
-    updateSize();
+    setValue(tempValue); // Already updates size
 }
 
 void UIProgressBar::setValue(float value) {
@@ -70,6 +71,7 @@ void UIProgressBar::setSize(Vector2f size) {
 }
 
 float UIProgressBar::getProgress() { return value / max; }
+float UIProgressBar::getValue() { return value; }
 
 FloatRect UIProgressBar::getBounds() { return background.getLocalBounds(); }
 Vector2f UIProgressBar::getSize() { return background.getSize(); }
