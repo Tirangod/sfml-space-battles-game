@@ -9,7 +9,8 @@ void Player::onInit() {
     getSprite().setScale(1.5f, 1.5f);
 
     hp = 60;
-    healthBar = {hp, 100};
+    healthBar.setMax(100);
+    healthBar.setValue(hp);
 
     healthBar.setSize({getSprite().getLocalBounds().width * 2, 7});
 
@@ -23,8 +24,8 @@ void Player::onInit() {
 
 void Player::move(float dt) {
     bool topBound       = getSprite().getPosition().y - getSprite().getLocalBounds().height/2 >= 0;
-    bool bottomBound    = getSprite().getPosition().y + getSprite().getLocalBounds().height/2 <= WindowInfo::getWindowSize().y;
-    bool rightBound     = getSprite().getPosition().x + getSprite().getLocalBounds().width/2  <= WindowInfo::getWindowSize().x;
+    bool bottomBound    = getSprite().getPosition().y + getSprite().getLocalBounds().height/2 <= WindowInfo::GetWindowSize().y;
+    bool rightBound     = getSprite().getPosition().x + getSprite().getLocalBounds().width/2  <= WindowInfo::GetWindowSize().x;
     bool leftBound      = getSprite().getPosition().x - getSprite().getLocalBounds().width/2  >= 0;
     
     if (Keyboard::isKeyPressed(Keyboard::W) && topBound) {

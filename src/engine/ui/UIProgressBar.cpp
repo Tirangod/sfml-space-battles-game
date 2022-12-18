@@ -1,5 +1,9 @@
 #include <engine/ui/UIProgressBar.hpp>
 
+UIProgressBar::UIProgressBar() {
+    setup();
+}
+
 UIProgressBar::UIProgressBar(float startValue, float maxValue) 
 {
     if (maxValue > 0) {
@@ -10,6 +14,10 @@ UIProgressBar::UIProgressBar(float startValue, float maxValue)
 
     setValue(startValue);
 
+    setup();
+}
+
+void UIProgressBar::setup() {
     foreground.setOrigin(
         foreground.getLocalBounds().width / 2,
         foreground.getLocalBounds().height / 2
@@ -59,6 +67,14 @@ void UIProgressBar::setValue(float value) {
     updateSize();
 }
 
+void UIProgressBar::setMax(float _max) {
+    if (_max <= 0) {
+        throw "Value is incorrect";
+        return;
+    }
+    max = _max;
+}
+
 void UIProgressBar::setPosition(Vector2f pos) {
     foreground.setPosition(pos);
     background.setPosition(pos);
@@ -72,9 +88,10 @@ void UIProgressBar::setSize(Vector2f size) {
 
 float UIProgressBar::getProgress() { return value / max; }
 float UIProgressBar::getValue() { return value; }
+float UIProgressBar::getMax() { return max; }
 
 FloatRect UIProgressBar::getBounds() { return background.getGlobalBounds(); }
 Vector2f UIProgressBar::getSize() { return background.getSize(); }
-RectangleShape UIProgressBar::getForeground() { return foreground; }
-RectangleShape UIProgressBar::getBackground() { return background; }
+RectangleShape& UIProgressBar::getForeground() { return foreground; }
+RectangleShape& UIProgressBar::getBackground() { return background; }
 

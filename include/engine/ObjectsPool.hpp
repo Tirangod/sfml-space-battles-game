@@ -14,17 +14,20 @@ class ObjectsPool {
 private:
     static ObjectsPool* instance;
     Objects objects;
+    Objects added;
     Objects deleted;
     vector<int> indexes;
 public:
-    static ObjectsPool& get();
+    ObjectsPool();
+    static ObjectsPool& Get();
+    static void AddObject(GameObject *object);
+    static void RemoveObject(GameObject *object);
+    static void RemoveAll();
+    static void ResolveAdded();
+    static void ResolveDeleted();
 
-    static void addObject(GameObject *object);
-    static void removeObject(GameObject *object);
-    static void clearEmptySpace();
-
-    static GameObject* getObjectAt(size_t index);
-    static Objects& getObjects();
+    static GameObject* GetObjectByIndex(size_t index);
+    static Objects& GetObjects();
 };
 
 #endif

@@ -1,6 +1,5 @@
 # TODO List
 
-- Effects
 - Transitions
 - Music & sound
 - UI

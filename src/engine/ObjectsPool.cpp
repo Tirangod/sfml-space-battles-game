@@ -2,31 +2,24 @@
 
 ObjectsPool *ObjectsPool::instance = nullptr;
 
-ObjectsPool& ObjectsPool::get() {
+ObjectsPool::ObjectsPool() {
+    objects.reserve(128);
+}
+
+ObjectsPool& ObjectsPool::Get() {
     if (instance == nullptr) {
         instance = new ObjectsPool;
-        instance->objects.reserve(256);
     }
     return *instance;
 }
 
-void ObjectsPool::addObject(GameObject *object) {
-    auto &self = get();
-
+void ObjectsPool::AddObject(GameObject *object) {
     object->_init();
-
-    if (self.indexes.size() > 0) {
-        auto lastIndex = self.indexes[self.indexes.size()-1];
-        self.objects[lastIndex] = object;
-        self.indexes.pop_back();
-        return;
-    }
-
-    self.objects.push_back(object);
+    Get().added.push_back(object);
 }
 
-void ObjectsPool::removeObject(GameObject *object) {
-    auto &self = get();
+void ObjectsPool::RemoveObject(GameObject *object) {
+    auto &self = Get();
 
     object->disable();
     object->onKilled();
@@ -41,8 +34,35 @@ void ObjectsPool::removeObject(GameObject *object) {
     }
 }
 
-void ObjectsPool::clearEmptySpace() {
-    auto &self = get();
+void ObjectsPool::RemoveAll() {
+    auto &self = Get();
+
+    for (auto it = self.objects.begin(); it != self.objects.end(); ++it) {
+        RemoveObject(*it);
+    }
+}
+
+void ObjectsPool::ResolveAdded() {
+    auto &self = Get();
+
+    int lastIndex = 0;
+    
+    for (int i = 0; i < self.added.size(); i++) {
+        auto object = self.added[i];
+
+        if (self.indexes.size() > 0) {
+            lastIndex = self.indexes[self.indexes.size() - 1];
+            self.objects[lastIndex] = object;
+            self.indexes.pop_back();
+            continue;
+        }
+        self.objects.push_back(object);
+    }
+    self.added.clear();
+}
+
+void ObjectsPool::ResolveDeleted() {
+    auto &self = Get();
 
     for (auto it = self.deleted.begin(); it != self.deleted.end(); ++it) {
         delete *it;
@@ -51,9 +71,9 @@ void ObjectsPool::clearEmptySpace() {
 } 
 
 
-GameObject* ObjectsPool::getObjectAt(size_t index) {
+GameObject* ObjectsPool::GetObjectByIndex(size_t index) {
     
-    return get().objects.at(index);
+    return Get().objects.at(index);
 }
 
-Objects& ObjectsPool::getObjects() { return get().objects; }
+Objects& ObjectsPool::GetObjects() { return Get().objects; }

@@ -49,7 +49,6 @@ public:
     */
     GameObject& spawn(GameObject *object);
     void destroy(GameObject *object);
-
     void move(Vector2f velocity);
 
     void setupTexture(string path);

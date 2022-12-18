@@ -10,19 +10,21 @@ using namespace sf;
 
 class SpriteAnimator {
 private:
-    Sprite& sprite;
-    Vector2i grid;
     int frameIndex;
     float timer;
-    Time speed;
-    Time time;
+    float dt;
     bool repeated;
     bool finished;
+    Sprite& sprite;
+    Vector2i grid;
+    Time speed;
     vector<IntRect> frames;
 public:
     SpriteAnimator(Sprite& sprite);
+    void _update(float dt);
+
     void setAnimGrid(Vector2i grid);
-    void play(float dt);
+    void play();
 
     void setRepeated(bool flag);
     void setSpeed(Time speed);
@@ -30,7 +32,7 @@ public:
     bool isRepeated();
     bool isFinished();
     float getSpeed();
-    Time getTime();
+    Time getDuration();
 };
 
 #endif

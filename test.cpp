@@ -8,26 +8,15 @@
 
 using namespace std;
 
-class Base {
-public:
-    virtual void create() {}
-};
-
-class Object : public Base{
-public:
-    void create() {}
-};
-
-class Another {
-public:
-    virtual void create() {}
-};
 
 int main() {
 
-    auto o = new Object;
-    
-    cout << ((bool)dynamic_cast<Another*>(o)) << endl;
+    vector<int> vec = {1, 2, 3, 4, 5};
+
+    for (int i = 0; i < vec.size(); i++) {
+        cout << vec[i] << endl;
+        vec.pop_back();
+    }
 
     return EXIT_SUCCESS;
 }

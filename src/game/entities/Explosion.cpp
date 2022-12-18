@@ -12,9 +12,9 @@ void Explosion::onInit() {
 }
 
 void Explosion::onUpdate(float dt) {
-    getSprite().getAnimator().play(dt);
+    getSprite().getAnimator().play();
 
-    if (timer.getElapsedTime() >= getSprite().getAnimator().getTime()) {
+    if (timer.getElapsedTime() >= getSprite().getAnimator().getDuration()) {
         destroy(this);
     }
 }

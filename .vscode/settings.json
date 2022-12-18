@@ -19,6 +19,10 @@
         "thread": "cpp",
         "tuple": "cpp",
         "variant": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "*.ipp": "cpp",
+        "functional": "cpp",
+        "utility": "cpp",
+        "istream": "cpp"
     }
 }

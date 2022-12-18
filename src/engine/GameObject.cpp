@@ -21,8 +21,10 @@ void GameObject::_init() {
 }
 
 void GameObject::_update(float dt) {
+    sprite._update(dt);
     onUpdate(dt);
     
+    /* For debuging */
     if (Keyboard::isKeyPressed(Keyboard::Q)) {
         boundsRect.setPosition(sprite.getPosition());
         boundsRect.setSize({
@@ -36,6 +38,7 @@ void GameObject::_draw(RenderTarget &target) {
     target.draw(sprite, renderStates);
     onDraw(target);
     
+    /* For debuging */
     if (Keyboard::isKeyPressed(Keyboard::Q))
         target.draw(boundsRect);
 }
@@ -58,24 +61,27 @@ GameObject& GameObject::spawn(Vector2f pos, Vector2f scale, float rot) {
     object->getSprite().setScale(scale);
     object->getSprite().setRotation(rot);
 
-    ObjectsPool::addObject(object);
+    ObjectsPool::AddObject(object);
     return *object;
 }
 */
 
 GameObject& GameObject::spawn(GameObject *object) {
-    ObjectsPool::addObject(object);
+    ObjectsPool::AddObject(object);
     return *object;
 }
 
 void GameObject::destroy(GameObject *object) {
-    ObjectsPool::removeObject(object);
+    ObjectsPool::RemoveObject(object);
+}
+
+void GameObject::move(Vector2f velocity) {
+    getSprite().move(velocity);
 }
 
 void GameObject::setupTexture(string path) {
     if (!texture.loadFromFile(path)) {
-        //texture.loadFromFile("assets/FailedToLoadImage.png");
-        throw "Failed to load texture";
+        throw ("Failed to load texture" + path);
     }
     sprite.setTexture(texture);
 }
@@ -84,10 +90,6 @@ void GameObject::setupTexture(string path) {
     shader.loadFromFile(path, Shader::Fragment);
     renderStates.shader = &shader;
 }*/
-
-void GameObject::move(Vector2f velocity) {
-    getSprite().move(velocity);
-}
 
 void GameObject::setActive(bool flag) { active = flag; }
 void GameObject::setVisibile(bool flag) { visible = flag; }

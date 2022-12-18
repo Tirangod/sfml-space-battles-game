@@ -3,37 +3,17 @@
 Game::Game() :
     window(RenderWindow(VideoMode(1280, 720), "Super puper game"))
 {   
-    WindowInfo::get().setWindowSize(window.getSize());
+    WindowInfo::Get().setWindowSize(window.getSize());
 
-    window.setFramerateLimit(120);
+    //window.setFramerateLimit(120);
 
-    Player *player = new Player;
-    ObjectsPool::addObject(player);
-
-    for (int i = 0; i < 10; i++) {
-        Enemy *enemy = new Enemy;
-        enemy->getSprite().setPosition({(float)(150 + 100 * i), 100.f});
-        ObjectsPool::addObject(enemy);
-    }
-}
-
-
-void Game::updateObjects(float dt) {
-    for (auto object : ObjectsPool::getObjects())
-        if (object->isActive())
-            object->_update(dt);
-        
-}
-
-void Game::drawObjects() {
-    for (auto object : ObjectsPool::getObjects())
-        if (object->isVisible())
-            object->_draw(window);
-    
+    auto menu = new MenuScene;
+    auto game = new GameScene;
+    Scenes::AddScene(menu);
+    Scenes::AddScene(game);
 }
 
 void Game::run() {
-    const Color DEFAULT_COLOR{123, 56, 77};
     
     float dt = 0;
 
@@ -49,25 +29,27 @@ void Game::run() {
                     int height = event.size.height;
 
                     window.setView(View({(float)width/2, (float)height/2}, {(float)width, (float)height}));
-                    WindowInfo::get().setWindowSize({(unsigned)width, (unsigned)height});
+                    WindowInfo::Get().setWindowSize({(unsigned)width, (unsigned)height});
                 break;
             }
         }
-        window.clear(DEFAULT_COLOR);
-        Interactions::update(dt);
-        updateObjects(dt);
-        drawObjects();
-        ObjectsPool::clearEmptySpace();
+
+        Interactions::Update(dt);
+        Scenes::Update(dt);
+        Scenes::Draw(window);
+        ObjectsPool::ResolveAdded();
+        ObjectsPool::ResolveDeleted();
         window.display();
 
         dt = clock.getElapsedTime().asSeconds();
         if (time >= 1.f) {
-            window.setTitle("FPS: " + to_string(frames));
+            window.setTitle("FPS: " + to_string(frames) + " Objects: " + to_string(ObjectsPool::GetObjects().size()));
             frames = 0;
             time = 0;
         }
         time += dt;
         frames++;
+
         clock.restart(); // resets Clock time counter
     }
 }

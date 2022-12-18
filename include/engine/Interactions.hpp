@@ -8,7 +8,7 @@ class Interactions {
 private:
     
 public:
-    static void update(float dt);
+    static void Update(float dt);
     
 };
 

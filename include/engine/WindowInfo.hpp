@@ -12,11 +12,9 @@ class WindowInfo {
 public:
     void setWindowSize(Vector2u size);
 
-    static WindowInfo& get();
-    static Vector2u getWindowSize();
-    static bool isOutofScreen(Vector2f pos);
-
-    WindowInfo& operator =(WindowInfo&) = delete;
+    static WindowInfo& Get();
+    static Vector2u GetWindowSize();
+    static bool IsOutofScreen(Vector2f pos);
 };
 
 #endif

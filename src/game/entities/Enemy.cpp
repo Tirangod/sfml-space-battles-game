@@ -9,7 +9,8 @@ void Enemy::onInit() {
     getSprite().setScale(1.5f, 1.5f);
 
     hp = 100;
-    healthBar = {hp, 100};
+    healthBar.setMax(100);
+    healthBar.setValue(hp);
 
     float yOffset = -getSprite().getLocalBounds().height;
 
@@ -25,12 +26,30 @@ void Enemy::onDraw(RenderTarget &target) {
     healthBar._draw(target);
 }
 
-void Enemy::onCollisionEnter(GameObject *object) {
-    cout << "ONCE" << endl;
+void Enemy::onUpdate(float dt) {
+    if (shaking) {
+        if (!beginShaking) {
+            posBuffer = getSprite().getPosition();
+            beginShaking = true;
+        }
+        float shakeAmplitude = 2.f;
+        shakeElapsedTime += dt;
+        float x = shakeAmplitude * sinf(shakeElapsedTime);
+        float y = shakeAmplitude * sinf(shakeElapsedTime);
+        getSprite().move((shakeAmplitude - rand() % 5) * 100.f * shakeAmplitude * dt, (shakeAmplitude - rand() % 5) * shakeAmplitude * 100.f * dt);
+
+        if (shakeElapsedTime >= seconds(0.5f).asSeconds()) {
+            shaking = false;
+            beginShaking = false;
+            shakeElapsedTime = 0;
+            getSprite().setPosition(posBuffer);
+        }
+    }
 }
 
 void Enemy::onCollisionStay(GameObject *object) {
     if (dynamic_cast<Bullet*>(object)) {
+        shaking = true;
         healthBar.add(-10);
         if (healthBar.getValue() <= 0) {
             spawn(new Explosion).getSprite().setPosition(getSprite().getPosition());

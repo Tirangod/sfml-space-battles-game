@@ -1,9 +1,14 @@
 #include <engine/GameSprite.hpp>
 
 GameSprite::GameSprite() 
-: animator(*this)
+: animator(*this), transition(*this)
 {
     
+}
+
+void GameSprite::_update(float dt) {
+    animator._update(dt);
+    transition._update(dt);
 }
 
 void GameSprite::alignCenter() {

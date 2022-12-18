@@ -2,7 +2,7 @@
 
 WindowInfo *WindowInfo::instance = nullptr;
 
-WindowInfo& WindowInfo::get() {
+WindowInfo& WindowInfo::Get() {
     if (instance == nullptr)
         instance = new WindowInfo;
     
@@ -12,9 +12,9 @@ WindowInfo& WindowInfo::get() {
 void WindowInfo::setWindowSize(Vector2u size) {
     windowSize = size;
 }
-bool WindowInfo::isOutofScreen(Vector2f pos) {
-    return pos.x < 0 || pos.x > get().windowSize.x || pos.y < 0 || pos.y > get().windowSize.y;
+bool WindowInfo::IsOutofScreen(Vector2f pos) {
+    return pos.x < 0 || pos.x > Get().windowSize.x || pos.y < 0 || pos.y > Get().windowSize.y;
 }
-Vector2u WindowInfo::getWindowSize() {
-    return get().windowSize;
+Vector2u WindowInfo::GetWindowSize() {
+    return Get().windowSize;
 }

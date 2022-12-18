@@ -8,16 +8,16 @@
 using namespace std;
 using namespace sf;
 
-// TODO: implement UIComponent
 class UIProgressBar : public UIComponent {
     float value;
     float max;
     RectangleShape foreground;
     RectangleShape background;
 
+    void setup();
     void updateSize();
 public:
-    UIProgressBar() = default;
+    UIProgressBar();
     UIProgressBar(float startValue, float max);
 
     void _draw(RenderTarget& target);
@@ -25,17 +25,19 @@ public:
 
     void add(float amount);
     void setValue(float value);
+    void setMax(float max);
     
     void setPosition(Vector2f pos);
     void setSize(Vector2f size);
     
     float getProgress();
     float getValue();
+    float getMax();
 
     FloatRect getBounds();
     Vector2f getSize();
-    RectangleShape getForeground();
-    RectangleShape getBackground();
+    RectangleShape& getForeground();
+    RectangleShape& getBackground();
 };
 
 #endif

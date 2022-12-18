@@ -5,7 +5,6 @@ void Bullet::onInit() {
     //setupShader("assets/pixelate.frag");
 
     getSprite().alignCenter();
-    //getSprite().setPosition(startPos);
     getSprite().rotate(-90);
     getSprite().setScale(0.2, 0.2);
 
@@ -14,7 +13,7 @@ void Bullet::onInit() {
 }
 
 void Bullet::onUpdate(float dt) {
-    if (WindowInfo::isOutofScreen(getSprite().getPosition())) {
+    if (WindowInfo::IsOutofScreen(getSprite().getPosition())) {
         //destroy(this);
         destroy(this);
     }

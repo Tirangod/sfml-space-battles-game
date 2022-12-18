@@ -5,9 +5,14 @@ SpriteAnimator::SpriteAnimator(Sprite& sprite)
 {
    frameIndex = 0;
    timer = 0;
+   dt = 0;
    speed = milliseconds(1);
    repeated = true;
    finished = false;
+}
+
+void SpriteAnimator::_update(float _dt) {
+   dt = _dt;
 }
 
 /**
@@ -31,7 +36,7 @@ void SpriteAnimator::setAnimGrid(Vector2i _grid) {
    sprite.setTextureRect({0, 0, cellSize.x, cellSize.y});
 }
 
-void SpriteAnimator::play(float dt) {
+void SpriteAnimator::play() {
    if (finished)
       return;
 
@@ -59,6 +64,6 @@ bool SpriteAnimator::isRepeated() { return repeated; }
 bool SpriteAnimator::isFinished() { return finished; }
 float SpriteAnimator::getSpeed() { return speed.asSeconds(); }
 
-Time SpriteAnimator::getTime() {
+Time SpriteAnimator::getDuration() {
    return seconds(speed.asSeconds() * frames.size());
 }

@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "SpriteAnimator.hpp"
+#include "Transition.hpp"
 
 using namespace std;
 using namespace sf;
@@ -10,9 +11,10 @@ using namespace sf;
 class GameSprite : public Sprite {
 private:
     SpriteAnimator animator;
-
+    Transition transition;
 public:
     GameSprite();
+    void _update(float dt);
     
     void alignTop();
     void alignBottom();
@@ -23,6 +25,7 @@ public:
     void alignY();
 
     SpriteAnimator& getAnimator();
+    Transition& getTransition();
 };
 
 #endif
