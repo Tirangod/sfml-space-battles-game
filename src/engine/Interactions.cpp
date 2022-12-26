@@ -12,8 +12,8 @@ void Interactions::Update(float dt) {
             obj2 = ObjectsPool::GetObjectByIndex(j);
 
             if (obj1->intersects(obj2) && obj2->intersects(obj1)) {
-                obj1->onCollisionStay(obj2);
-                obj2->onCollisionStay(obj1);
+                obj1->onCollision(obj2);
+                obj2->onCollision(obj1);
             }
         }
     }

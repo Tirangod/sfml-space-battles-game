@@ -8,8 +8,8 @@
 
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
-#include "engine/WindowInfo.hpp"
-#include "game/entities/Explosion.hpp"
+#include "engine/GameWindow.hpp"
+#include "game/entities/Blast.hpp"
 #include "game/entities/Enemy.hpp"
 
 using namespace std;
@@ -23,7 +23,7 @@ public:
     Bullet() {}
     void onInit();
     void onUpdate(float dt);
-    void onCollisionStay(GameObject *object);
+    void onCollision(GameObject *object);
 };
 
 #endif

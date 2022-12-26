@@ -7,9 +7,11 @@
 #include <SFML/System.hpp>
 
 #include "engine/ui/UIProgressBar.hpp"
+#include "engine/GameSettings.hpp"
+#include "engine/SoundPlayer.hpp"
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
-#include "engine/WindowInfo.hpp"
+#include "engine/GameWindow.hpp"
 #include "Bullet.hpp"
 
 using namespace sf;
@@ -21,6 +23,7 @@ private:
     float speed;
     float hp;
 
+    SoundPlayer fireSound;
     bool canShooting;
     bool isShooting;
     float shootingCooldown;

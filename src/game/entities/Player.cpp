@@ -2,11 +2,14 @@
 
 
 void Player::onInit() {
-    setupTexture("assets/sprites/metalic_02.png");
-
+    getSprite().loadFrom("assets/sprites/player/metalic_02.png");
     getSprite().alignCenter();
-    getSprite().setPosition(250, 250);
+    getSprite().setPosition(GameWindow::GetSizef() / 2.f);
     getSprite().setScale(1.5f, 1.5f);
+
+    fireSound.loadFrom("assets/audio/sounds/fire/fire0.wav");
+    fireSound.setVolume(50.f);
+    GameSettings::AddEffectSound(fireSound);
 
     hp = 60;
     healthBar.setMax(100);
@@ -24,8 +27,8 @@ void Player::onInit() {
 
 void Player::move(float dt) {
     bool topBound       = getSprite().getPosition().y - getSprite().getLocalBounds().height/2 >= 0;
-    bool bottomBound    = getSprite().getPosition().y + getSprite().getLocalBounds().height/2 <= WindowInfo::GetWindowSize().y;
-    bool rightBound     = getSprite().getPosition().x + getSprite().getLocalBounds().width/2  <= WindowInfo::GetWindowSize().x;
+    bool bottomBound    = getSprite().getPosition().y + getSprite().getLocalBounds().height/2 <= GameWindow::Get().getSize().y;
+    bool rightBound     = getSprite().getPosition().x + getSprite().getLocalBounds().width/2  <= GameWindow::Get().getSize().x;
     bool leftBound      = getSprite().getPosition().x - getSprite().getLocalBounds().width/2  >= 0;
     
     if (Keyboard::isKeyPressed(Keyboard::W) && topBound) {
@@ -56,6 +59,7 @@ void Player::move(float dt) {
 
 
 void Player::onShot() {
+    fireSound.play();
     auto &bullet = spawn(new Bullet);
     bullet.getSprite().setPosition({getSprite().getPosition().x, getSprite().getPosition().y - 60.f});
 }

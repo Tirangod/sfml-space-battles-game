@@ -6,8 +6,6 @@ void GameObject::_init() {
     active = true;
     visible = true;
 
-    renderStates = RenderStates::Default;
-
     /* For debuging */
     boundsRect.setFillColor({0, 0, 0, 0});
     boundsRect.setOutlineColor({0, 255, 0});
@@ -35,7 +33,7 @@ void GameObject::_update(float dt) {
 }
 
 void GameObject::_draw(RenderTarget &target) {
-    target.draw(sprite, renderStates);
+    target.draw(sprite);
     onDraw(target);
     
     /* For debuging */
@@ -78,19 +76,6 @@ void GameObject::destroy(GameObject *object) {
 void GameObject::move(Vector2f velocity) {
     getSprite().move(velocity);
 }
-
-void GameObject::setupTexture(string path) {
-    if (!texture.loadFromFile(path)) {
-        throw ("Failed to load texture" + path);
-    }
-    sprite.setTexture(texture);
-}
-
-/*void GameObject::setupShader(string path) {
-    shader.loadFromFile(path, Shader::Fragment);
-    renderStates.shader = &shader;
-}*/
-
 void GameObject::setActive(bool flag) { active = flag; }
 void GameObject::setVisibile(bool flag) { visible = flag; }
 
@@ -106,7 +91,6 @@ void GameObject::disable() {
 bool GameObject::isActive() { return active; }
 bool GameObject::isVisible() { return visible; }
 FloatRect GameObject::getBounds() { return sprite.getGlobalBounds(); }
-Texture& GameObject::getTexture() { return texture; }
 GameSprite& GameObject::getSprite() { return sprite; }
 
 

@@ -23,6 +23,7 @@
         "*.ipp": "cpp",
         "functional": "cpp",
         "utility": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "type_traits": "cpp"
     }
 }

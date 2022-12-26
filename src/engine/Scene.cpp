@@ -13,15 +13,15 @@ void Scene::drawObjects(RenderTarget& window) {
 }
 
 void Scene::_init() {
-
     onInit();
 }
 void Scene::_update(float dt) {
+    background._update(dt);
     updateObjects(dt);
     onUpdate(dt);
 }
 void Scene::_draw(RenderTarget& target) {
-    background.draw(target);
+    background._draw(target);
     drawObjects(target);
     onDraw(target);
 }

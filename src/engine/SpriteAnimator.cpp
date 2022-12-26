@@ -37,7 +37,7 @@ void SpriteAnimator::setAnimGrid(Vector2i _grid) {
 }
 
 void SpriteAnimator::play() {
-   if (finished)
+   if (finished || frames.empty())
       return;
 
    if (timer >= speed.asSeconds()) {
@@ -59,6 +59,14 @@ void SpriteAnimator::play() {
 
 void SpriteAnimator::setRepeated(bool flag) { repeated = flag; }
 void SpriteAnimator::setSpeed(Time _speed) { speed = _speed; }
+void SpriteAnimator::setDuration(Time duration) { 
+   if (frames.empty()) {
+      cerr << "Frames have to be set first!";
+      return;
+   }
+
+   speed = seconds(duration.asSeconds() / frames.size());   
+}
 
 bool SpriteAnimator::isRepeated() { return repeated; }
 bool SpriteAnimator::isFinished() { return finished; }

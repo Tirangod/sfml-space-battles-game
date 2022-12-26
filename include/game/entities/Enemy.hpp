@@ -4,9 +4,10 @@
 #include <cmath>
 #include <SFML/System.hpp>
 
+#include "engine/effects/ShakeEffect.hpp"
 #include "engine/ui/UIProgressBar.hpp"
 #include "engine/GameObject.hpp"
-#include "game/entities/Explosion.hpp"
+#include "game/entities/Blast.hpp"
 #include "game/entities/Bullet.hpp"
 
 class Enemy : public GameObject {
@@ -15,19 +16,16 @@ private:
     float speed;
     float hp;
 
-    // Shaking effect
-    Vector2f posBuffer;
-    float shakeElapsedTime = 0;
-    bool beginShaking = false;
-    bool shaking = false;
+    ShakeEffect *shakeEffect;
 
     UIProgressBar healthBar;
 public:
     Enemy() {}
     void onInit();
-    void onCollisionStay(GameObject *object);
+    void onCollision(GameObject *object);
     void onUpdate(float dt);
     void onDraw(RenderTarget &target);
+    void onKilled();
 };
 
 #endif

@@ -8,7 +8,8 @@
 #include <SFML/System.hpp>
 
 #include "engine/Interactions.hpp"
-#include "engine/WindowInfo.hpp"
+#include "engine/GameWindow.hpp"
+#include "engine/KeyEvents.hpp"
 #include "engine/Scenes.hpp"
 #include "game/scenes/MenuScene.hpp"
 #include "game/scenes/GameScene.hpp"
@@ -19,7 +20,7 @@ using namespace std;
 
 class Game {
 private:
-    RenderWindow window;
+    GameWindow& window;
     Clock clock;
     
     int frames = 0;

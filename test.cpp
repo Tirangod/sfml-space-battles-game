@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <cmath>
 #include <iostream>
 #include <vector>
 #include <list>
@@ -9,14 +10,24 @@
 using namespace std;
 
 
+class Object {
+public:
+    Object() {
+        cout << "HEllo" << endl;
+    }
+};
+
+class Subject : Object {
+public:
+    Subject() {
+        cout << "FUCK" << endl;
+    }
+};
+
 int main() {
 
-    vector<int> vec = {1, 2, 3, 4, 5};
-
-    for (int i = 0; i < vec.size(); i++) {
-        cout << vec[i] << endl;
-        vec.pop_back();
-    }
+    Object o;
+    Subject s;
 
     return EXIT_SUCCESS;
 }

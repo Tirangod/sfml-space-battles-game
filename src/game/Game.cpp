@@ -1,11 +1,12 @@
 #include <game/Game.hpp>
 
 Game::Game() :
-    window(RenderWindow(VideoMode(1280, 720), "Super puper game"))
+    window(GameWindow::Get())
 {   
-    WindowInfo::Get().setWindowSize(window.getSize());
-
-    //window.setFramerateLimit(120);
+    window.requestFocus();
+    window.clear(Color::Black);
+    window.setMouseCursorVisible(false);
+    window.setFramerateLimit(120);
 
     auto menu = new MenuScene;
     auto game = new GameScene;
@@ -18,22 +19,35 @@ void Game::run() {
     float dt = 0;
 
     while (window.isOpen()) {
+        KeyEvents::Get().clearKeys();
+
         Event event;
         while (window.pollEvent(event)) {
             switch (event.type) {
                 case Event::Closed:
                     window.close();
                 break;
-                case Event::Resized:
-                    int width = event.size.width;
-                    int height = event.size.height;
+                case Event::Resized: {
+                    window.setView(View(window.GetSizef() / 2.f, window.GetSizef()));
+                break;}
+                case Event::KeyPressed:
+                    switch (event.key.code) {
+                        case Keyboard::F11:
+                            if (window.IsFullscreen())
+                                window.SetFullscreen(false);
+                            else 
+                                window.SetFullscreen(true);
+                        break;
+                    }
+                    
 
-                    window.setView(View({(float)width/2, (float)height/2}, {(float)width, (float)height}));
-                    WindowInfo::Get().setWindowSize({(unsigned)width, (unsigned)height});
+                    KeyEvents::Get().setPressedKey(event.key.code);
+                break;
+                case Event::KeyReleased:
+                    KeyEvents::Get().setReleasedKey(event.key.code);
                 break;
             }
         }
-
         Interactions::Update(dt);
         Scenes::Update(dt);
         Scenes::Draw(window);
@@ -43,7 +57,7 @@ void Game::run() {
 
         dt = clock.getElapsedTime().asSeconds();
         if (time >= 1.f) {
-            window.setTitle("FPS: " + to_string(frames) + " Objects: " + to_string(ObjectsPool::GetObjects().size()));
+            window.setTitle("FPS: " + to_string(frames));
             frames = 0;
             time = 0;
         }

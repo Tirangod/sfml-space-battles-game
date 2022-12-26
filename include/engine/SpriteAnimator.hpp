@@ -28,6 +28,7 @@ public:
 
     void setRepeated(bool flag);
     void setSpeed(Time speed);
+    void setDuration(Time duration);
 
     bool isRepeated();
     bool isFinished();

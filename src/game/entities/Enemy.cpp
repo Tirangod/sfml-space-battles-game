@@ -1,25 +1,20 @@
 #include <game/entities/Enemy.hpp>
 
 void Enemy::onInit() {
-    setupTexture("assets/sprites/red_01.png");
-    
+    getSprite().loadFrom("assets/sprites/enemies/ship1.png");
     getSprite().alignCenter();
-    getSprite().rotate(180);
-    //getSprite().setPosition(450, 200);
-    getSprite().setScale(1.5f, 1.5f);
+    getSprite().setRotation(90);
+    getSprite().setScale(2.f, 2.f);
+
+    shakeEffect = new ShakeEffect(200.f);
+    shakeEffect->addSprite(getSprite());
 
     hp = 100;
     healthBar.setMax(100);
     healthBar.setValue(hp);
 
-    float yOffset = -getSprite().getLocalBounds().height;
-
     healthBar.setSize({getSprite().getLocalBounds().width * 2, 7});
     healthBar.getForeground().setFillColor(Color::Red);
-    healthBar.setPosition({
-        getSprite().getPosition().x - getSprite().getLocalBounds().width, 
-        getSprite().getPosition().y + yOffset * 1.5f
-    });
 }
 
 void Enemy::onDraw(RenderTarget &target) {
@@ -27,33 +22,28 @@ void Enemy::onDraw(RenderTarget &target) {
 }
 
 void Enemy::onUpdate(float dt) {
-    if (shaking) {
-        if (!beginShaking) {
-            posBuffer = getSprite().getPosition();
-            beginShaking = true;
-        }
-        float shakeAmplitude = 2.f;
-        shakeElapsedTime += dt;
-        float x = shakeAmplitude * sinf(shakeElapsedTime);
-        float y = shakeAmplitude * sinf(shakeElapsedTime);
-        getSprite().move((shakeAmplitude - rand() % 5) * 100.f * shakeAmplitude * dt, (shakeAmplitude - rand() % 5) * shakeAmplitude * 100.f * dt);
+    shakeEffect->update(dt);
 
-        if (shakeElapsedTime >= seconds(0.5f).asSeconds()) {
-            shaking = false;
-            beginShaking = false;
-            shakeElapsedTime = 0;
-            getSprite().setPosition(posBuffer);
+    float yOffset = -getSprite().getLocalBounds().height;
+    healthBar.setPosition({
+        getSprite().getPosition().x - getSprite().getLocalBounds().width, 
+        getSprite().getPosition().y + yOffset * 1.5f
+    });
+}  
+
+void Enemy::onCollision(GameObject *object) {
+    if (dynamic_cast<Bullet*>(object)) {
+        shakeEffect->start();
+        healthBar.add(-10);
+        if (healthBar.getValue() <= 0) {
+            Blast& blast = static_cast<Blast&>(spawn(new Blast));
+            blast.getSprite().setPosition(getSprite().getPosition());
+            blast.getSprite().setScale(3, 3);
+            destroy(this);
         }
     }
 }
 
-void Enemy::onCollisionStay(GameObject *object) {
-    if (dynamic_cast<Bullet*>(object)) {
-        shaking = true;
-        healthBar.add(-10);
-        if (healthBar.getValue() <= 0) {
-            spawn(new Explosion).getSprite().setPosition(getSprite().getPosition());
-            destroy(this);
-        }
-    }
+void Enemy::onKilled() {
+    delete shakeEffect;
 }

@@ -1,10 +1,10 @@
 # TODO List
 
-- Transitions
-- Music & sound
 - UI
 - Main menu
-- Scenes
-- Player`s weapon pressets
+- Music & sound
+- Weapon, explosions pressets
+- State machine
+- Dialogue system
 - Enemies` AI
 - Particles system

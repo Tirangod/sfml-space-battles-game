@@ -20,12 +20,7 @@ private:
     bool active;
     bool visible;
     
-    Texture texture;
     GameSprite sprite;
-
-    //Shader shader;
-    RenderStates renderStates;
-
     RectangleShape boundsRect;
 public:
     static GameObject *EMPTY;
@@ -50,10 +45,7 @@ public:
     GameObject& spawn(GameObject *object);
     void destroy(GameObject *object);
     void move(Vector2f velocity);
-
-    void setupTexture(string path);
-    //void setupShader(string path);
-
+    
     void setActive(bool flag);
     void setVisibile(bool flag);
 
@@ -63,7 +55,6 @@ public:
     bool isActive();
     bool isVisible();
     FloatRect getBounds();
-    Texture& getTexture();
     GameSprite& getSprite();
 };
 

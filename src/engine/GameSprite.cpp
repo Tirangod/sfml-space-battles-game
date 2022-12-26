@@ -1,14 +1,13 @@
 #include <engine/GameSprite.hpp>
 
 GameSprite::GameSprite() 
-: animator(*this), transition(*this)
+: animator(*this)
 {
-    
+    set = false;
 }
 
 void GameSprite::_update(float dt) {
     animator._update(dt);
-    transition._update(dt);
 }
 
 void GameSprite::alignCenter() {
@@ -50,6 +49,27 @@ void GameSprite::alignRight() {
         getGlobalBounds().width,
         getOrigin().y
     );
+}
+
+void GameSprite::loadFrom(string path) {
+    texture.loadFromFile(path);
+    setTexture(texture);
+    set = true;
+}
+
+void GameSprite::create(Vector2u size) {
+    texture.create(size.x, size.y);
+    setTexture(texture);
+    set = true;
+}
+
+//TODO: FIX. Getting nan from global bounds values
+FloatRect GameSprite::getBounds() {
+    return getGlobalBounds();
+}
+
+bool GameSprite::isSet() {
+    return set;
 }
 
 SpriteAnimator& GameSprite::getAnimator() { return animator; }

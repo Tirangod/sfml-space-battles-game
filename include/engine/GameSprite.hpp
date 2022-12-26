@@ -3,15 +3,15 @@
 
 #include <SFML/Graphics.hpp>
 #include "SpriteAnimator.hpp"
-#include "Transition.hpp"
 
 using namespace std;
 using namespace sf;
 
 class GameSprite : public Sprite {
 private:
+    bool set;
+    Texture texture;
     SpriteAnimator animator;
-    Transition transition;
 public:
     GameSprite();
     void _update(float dt);
@@ -24,8 +24,13 @@ public:
     void alignX();
     void alignY();
 
+    void loadFrom(string path);
+    void create(Vector2u sizd);
+
+    FloatRect getBounds();
+    bool isSet();
+
     SpriteAnimator& getAnimator();
-    Transition& getTransition();
 };
 
 #endif
