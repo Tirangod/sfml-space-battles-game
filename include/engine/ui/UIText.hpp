@@ -24,7 +24,6 @@ public:
     void setFontSize(int size);
     void setString(string text);
     void setColor(Color color);
-    void setPosition(Vector2f pos);
     void alignCenter();
 
     Text& getText();

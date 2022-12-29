@@ -11,6 +11,7 @@
 #include "engine/GameWindow.hpp"
 #include "engine/KeyEvents.hpp"
 #include "engine/Scenes.hpp"
+#include "game/scenes/SkinsScene.hpp"
 #include "game/scenes/MenuScene.hpp"
 #include "game/scenes/GameScene.hpp"
 

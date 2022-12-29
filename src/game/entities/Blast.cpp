@@ -1,11 +1,12 @@
 #include <game/entities/Blast.hpp>
 
 void Blast::onInit() {
-    getSprite().loadFrom("assets/sprites/blast/blast_3.png");
-    auto &animator = getSprite().getAnimator();
-    animator.setAnimGrid({8, 8});
+    getSprite().loadFrom(preset.animImagePath);
+    getSprite().setScale(preset.scale);
+    auto& animator = getSprite().getAnimator();
+    animator.setAnimGrid(preset.animGrid);
     animator.setRepeated(false);
-    animator.setSpeed(milliseconds(10));
+    animator.setDuration(preset.animDuration);
     
     getSprite().alignCenter();
 }

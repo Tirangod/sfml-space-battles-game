@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
+
+#include "engine/ui/CompsGroup.hpp"
 #include "engine/Scene.hpp"
 #include "UIComponent.hpp"
 
@@ -22,6 +24,7 @@ public:
     virtual void onDraw(RenderTarget& target) {}
     virtual void onUpdate(float dt) {}
 
+    void addCompsGroup(CompsGroup& group);
     void addComp(UIComponent& comp);
     void select(int index);
     void selectNext();

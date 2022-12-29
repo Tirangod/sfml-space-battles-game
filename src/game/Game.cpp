@@ -9,8 +9,10 @@ Game::Game() :
     window.setFramerateLimit(120);
 
     auto menu = new MenuScene;
+    auto skin = new SkinsScene;
     auto game = new GameScene;
     Scenes::AddScene(menu);
+    Scenes::AddScene(skin);
     Scenes::AddScene(game);
 }
 

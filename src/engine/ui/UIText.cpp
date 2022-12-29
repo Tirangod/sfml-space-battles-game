@@ -6,13 +6,13 @@ void UIText::onDraw(RenderTarget& target) {
     target.draw(text);
 }
 void UIText::onUpdate(float dt) {
-
+    
 }
 void UIText::onSelected() {
 
 }
 void UIText::onWhileSelected(float dt) {
-
+    text.setPosition(getPosition());
 }
 
 void UIText::loadFont(string path) {
@@ -27,9 +27,6 @@ void UIText::setString(string value) {
 }
 void UIText::setColor(Color color) {
     text.setFillColor(color);
-}
-void UIText::setPosition(Vector2f pos) {
-    text.setPosition(pos);
 }
 
 void UIText::alignCenter() {

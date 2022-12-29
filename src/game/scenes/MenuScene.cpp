@@ -34,7 +34,7 @@ void MenuScene::onInit() {
     planet3.alignCenter();
 
     planet4.loadFrom("assets/sprites/planets/ice_anim.png");
-    planet4.setScale(1.5f, 1.5f/*1.8f, 1.8f*/);
+    planet4.setScale(2.f, 2.f/*1.8f, 1.8f*/);
     planet4.setPosition({185, 425}/*{160, 550}*/);
     planet4.getAnimator().setAnimGrid({15, 15});
     planet4.getAnimator().setDuration(seconds(15.f));
@@ -58,17 +58,17 @@ void MenuScene::onInit() {
     GameSettings::AddMusic(music);
 
     /*
-    resize = new ResizeEffect({900, 900});
-    resize->setDuration(seconds(5));
-    resize->addSprite(planet0);
-    resize->start();
+    scale = new ScaleEffect({900, 900});
+    scale->setDuration(seconds(5));
+    scale->addSprite(planet0);
+    scale->start();
     */
    
     ui.init();
 }
 
 void MenuScene::onUpdate(float dt) {
-    //resize->update(dt);
+    //scale->update(dt);
     ui.update(dt);
 }
 

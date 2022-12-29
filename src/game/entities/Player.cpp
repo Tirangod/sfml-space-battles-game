@@ -1,25 +1,27 @@
 #include "game/entities/Player.hpp"
 
+PlayerInfo Player::Preset = Player0;
 
 void Player::onInit() {
-    getSprite().loadFrom("assets/sprites/player/metalic_02.png");
+    getSprite().loadFrom(Preset.skinPath);
     getSprite().alignCenter();
     getSprite().setPosition(GameWindow::GetSizef() / 2.f);
     getSprite().setScale(1.5f, 1.5f);
 
-    fireSound.loadFrom("assets/audio/sounds/fire/fire0.wav");
+    fireSound.loadFrom(Preset.fireSoundPath);
     fireSound.setVolume(50.f);
     GameSettings::AddEffectSound(fireSound);
 
-    hp = 60;
-    healthBar.setMax(100);
+    hp = Preset.maxHP;
+    healthBar.onInit();
+    healthBar.setMax(hp);
     healthBar.setValue(hp);
 
     healthBar.setSize({getSprite().getLocalBounds().width * 2, 7});
 
-    speed = 400.f;
+    speed = Preset.speed;
 
-    shootingDelay = 40.f;
+    shootingDelay = Preset.shootingDelay;
     canShooting = true;
     isShooting = false;
     shootingCooldown = 0;
@@ -60,7 +62,7 @@ void Player::move(float dt) {
 
 void Player::onShot() {
     fireSound.play();
-    auto &bullet = spawn(new Bullet);
+    auto& bullet = spawn(new Bullet(Preset.bullet));
     bullet.getSprite().setPosition({getSprite().getPosition().x, getSprite().getPosition().y - 60.f});
 }
 

@@ -30,8 +30,8 @@ private:
     Color startColor;
     Color clickColor;
     //Color selectColor;
-    Color startOutlineColor;
-    Color selectOutlineColor;
+    //Color startOutlineColor;
+    //Color selectOutlineColor;
     
     VoidCallback onClickCallback;
 public:
@@ -46,6 +46,8 @@ public:
 
     void alignTextCenter();
 
+    void setColor(Color color);
+    void setClickColor(Color color);
     void setOnClick(VoidCallback callback);
     //void setOnSelect(function<void(void)> callback);
     //void setOnUnselect(function<void(void)> callback);

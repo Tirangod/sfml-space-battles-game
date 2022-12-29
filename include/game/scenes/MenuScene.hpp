@@ -3,7 +3,7 @@
 
 #include <SFML/Audio.hpp>
 
-#include "engine/effects/ResizeEffect.hpp"
+#include "engine/effects/ScaleEffect.hpp"
 #include "engine/effects/RampEffect.hpp"
 #include "engine/Scenes.hpp"
 #include "engine/Scene.hpp"
@@ -14,7 +14,7 @@ using namespace sf;
 
 class MenuScene : public Scene {
 private:
-    //ResizeEffect *resize;
+    //ScaleEffect *scale;
 
     MainMenuUI ui;
 

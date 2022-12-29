@@ -12,10 +12,12 @@
 #include "engine/ObjectsPool.hpp"
 #include "engine/GameObject.hpp"
 #include "engine/GameWindow.hpp"
+#include "game/Presets.hpp"
 #include "Bullet.hpp"
 
-using namespace sf;
+using namespace Presets;
 using namespace std;
+using namespace sf;
 
 class Player : public GameObject {
 private:
@@ -36,6 +38,7 @@ private:
     void controll();
     void move(float dt);
 public:
+    static PlayerInfo Preset;
     Player() {}
     void onInit();
     void onDraw(RenderTarget &target);

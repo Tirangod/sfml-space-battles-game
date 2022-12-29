@@ -7,11 +7,11 @@
 using namespace std;
 using namespace sf;
 
-class ResizeEffect : public Effect {
+class ScaleEffect : public Effect {
 private:
-    Vector2f targetSize;
+    Vector2f targetScale;
 public:
-    ResizeEffect(Vector2f size);
+    ScaleEffect(Vector2f scale);
     void play(float dt);
     //void started();
 };

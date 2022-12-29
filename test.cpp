@@ -15,6 +15,10 @@ public:
     Object() {
         cout << "HEllo" << endl;
     }
+    int operator* (int i) {
+        cout << i*i << endl;
+        return i*i;
+    }
 };
 
 class Subject : Object {
@@ -28,6 +32,9 @@ int main() {
 
     Object o;
     Subject s;
+
+
+    o.operator*(1);
 
     return EXIT_SUCCESS;
 }

@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "engine/ui/CompsGroup.hpp"
 #include "engine/GameSprite.hpp"
 #include "engine/Aliases.hpp"
 
@@ -46,6 +47,8 @@ public:
 
     void addSprite(GameSprite& sprite);
     void addShape(Shape& shape);
+    void addUIComponent(UIComponent& comp);
+    void addCompsGroup(CompsGroup& group);
 
     void setRepeated(bool flag);
     void setDuration(Time duration);

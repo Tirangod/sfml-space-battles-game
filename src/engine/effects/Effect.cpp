@@ -72,6 +72,17 @@ void Effect::addShape(Shape& shape) {
     shapes.push_back(&shape);
 }
 
+void Effect::addUIComponent(UIComponent& comp) {
+    addShape(comp.getBackground());
+}
+
+void Effect::addCompsGroup(CompsGroup& group) {
+    auto& comps = group.getComponents();
+    for (int i = 0; i < comps.size(); i++) {
+        addUIComponent(*comps[i]);
+    }
+}
+
 void Effect::setRepeated(bool flag) {
     repeated = flag;
 }

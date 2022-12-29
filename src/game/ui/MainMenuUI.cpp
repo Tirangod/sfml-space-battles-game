@@ -20,30 +20,74 @@ void MainMenuUI::onInit() {
     play.setIcon("assets/icons/play.png");
     play.getIcon().alignCenter();
     play.getIcon().setScale(2.5f, 2.5f);
-    play.setPosition({500, 310}/*{550, 500}*/);
-    play.setSize({190, 85}/*{270, 100}*/);
+    play.setPosition({490, 310}/*{550, 500}*/);
+    play.setSize({210, 85}/*{270, 100}*/);
     play.setPadding(play.getSize() / 2.f);
     play.setOnClick([&]{
         fadeOut->start();
     });
 
-    skin.setIcon("assets/icons/list.png");
-    skin.getIcon().alignCenter();
-    skin.getIcon().setScale(2.5f, 2.5f);
-    skin.setPosition({500, 410}/*{550, 620}*/);
-    skin.setSize({190, 85}/*{270, 100}*/);
-    skin.setPadding(play.getSize() / 2.f);
+    pref.setIcon("assets/icons/list.png");
+    pref.getIcon().alignCenter();
+    pref.getIcon().setScale(2.5f, 2.5f);
+    pref.setPosition({490, 410}/*{550, 620}*/);
+    pref.setSize({210, 85}/*{270, 100}*/);
+    pref.setPadding(pref.getSize() / 2.f);
 
     exit.setIcon("assets/icons/power_off.png");
     exit.getIcon().alignCenter();
     exit.getIcon().setScale(2.5f, 2.5f);
-    exit.setPosition({500, 510}/*{550, 740}*/);
-    exit.setSize({190, 85}/*{270, 100}*/);
-    exit.setPadding(play.getSize() / 2.f);
+    exit.setPosition({490, 510}/*{550, 740}*/);
+    exit.setSize({210, 85}/*{270, 100}*/);
+    exit.setPadding(exit.getSize() / 2.f);
     exit.setOnClick(GameWindow::Shutdown);
 
+    group.setPosition(GameWindow::GetSizef() / 2.f - Vector2f{80.f, 0});
+    group.setMargin({0, 100});
+    group.add(play);
+    group.add(pref);
+    group.add(exit);
+    group.alignCenter();
+
+
+    fullscreenBtn.setIcon("assets/icons/rect.png");
+    fullscreenBtn.getIcon().alignCenter();
+    fullscreenBtn.getIcon().setScale(2.5f, 2.5f);
+    fullscreenBtn.setSize({80, 80});
+    fullscreenBtn.setPadding(fullscreenBtn.getSize() / 2.f);
+
+    musicVolumeBtn.setIcon("assets/icons/music_volume_0.png");
+    musicVolumeBtn.getIcon().alignCenter();
+    musicVolumeBtn.getIcon().setScale(2.5f, 2.5f);
+    musicVolumeBtn.setSize({80, 80});
+    musicVolumeBtn.setPadding(musicVolumeBtn.getSize() / 2.f);
+
+    effectsVolumeBtn.setIcon("assets/icons/effects_volume_0.png");
+    effectsVolumeBtn.getIcon().alignCenter();
+    effectsVolumeBtn.getIcon().setScale(2.5f, 2.5f);
+    effectsVolumeBtn.setSize({80, 80});
+    effectsVolumeBtn.setPadding(effectsVolumeBtn.getSize() / 2.f);
+
+    uiVolumeBtn.setIcon("assets/icons/ui_volume_0.png");
+    uiVolumeBtn.getIcon().alignCenter();
+    uiVolumeBtn.getIcon().setScale(2.5f, 2.5f);
+    uiVolumeBtn.setSize({80, 80});
+    uiVolumeBtn.setPadding(uiVolumeBtn.getSize() / 2.f);
+
+    prefGroup.setPosition({100, 100});
+    prefGroup.setMargin({90, 0});
+    prefGroup.add(fullscreenBtn);
+    prefGroup.add(musicVolumeBtn);
+    prefGroup.add(effectsVolumeBtn);
+    prefGroup.add(uiVolumeBtn);
+
     addComp(play);
-    addComp(skin);
+    addComp(pref);
+    addCompsGroup(prefGroup);
+    /*addComp(fullscreenBtn);
+    addComp(musicVolumeBtn);
+    addComp(effectsVolumeBtn);
+    addComp(uiVolumeBtn);*/
     addComp(exit);
     addComp(panel);
 }

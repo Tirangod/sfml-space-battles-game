@@ -14,14 +14,13 @@ class UIProgressBar : public UIComponent {
     RectangleShape foreground;
     RectangleShape background;
 
-    void setup();
     void updateSize();
 public:
-    UIProgressBar();
+    UIProgressBar() {}
     UIProgressBar(float startValue, float max);
 
-    void _draw(RenderTarget& target);
-    void _update(float dt);
+    void onInit();
+    void onDraw(RenderTarget& target);
 
     void add(float amount);
     void setValue(float value);

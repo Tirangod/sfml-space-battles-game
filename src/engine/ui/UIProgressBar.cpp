@@ -1,9 +1,5 @@
 #include <engine/ui/UIProgressBar.hpp>
 
-UIProgressBar::UIProgressBar() {
-    setup();
-}
-
 UIProgressBar::UIProgressBar(float startValue, float maxValue) 
 {
     if (maxValue > 0) {
@@ -14,10 +10,16 @@ UIProgressBar::UIProgressBar(float startValue, float maxValue)
 
     setValue(startValue);
 
-    setup();
+    //setup();
 }
 
-void UIProgressBar::setup() {
+// Invokes when progressbar size or progress changes
+void UIProgressBar::updateSize() {
+    float maxWidth = background.getSize().x;
+    foreground.setSize({maxWidth * getProgress(), background.getSize().y});
+}
+
+void UIProgressBar::onInit() {
     foreground.setOrigin(
         foreground.getLocalBounds().width / 2,
         foreground.getLocalBounds().height / 2
@@ -32,18 +34,10 @@ void UIProgressBar::setup() {
     background.setOutlineThickness(3.f);
 }
 
-// Invokes when progressbar size or proress changes
-void UIProgressBar::updateSize() {
-    float maxWidth = background.getSize().x;
-    foreground.setSize({maxWidth * getProgress(), background.getSize().y});
-}
-
-void UIProgressBar::_draw(RenderTarget& target) {
+void UIProgressBar::onDraw(RenderTarget& target) {
     target.draw(background);
     target.draw(foreground);
 }
-
-void UIProgressBar::_update(float dt) { }
 
 void UIProgressBar::add(float amount) {
     float tempValue = value + amount;

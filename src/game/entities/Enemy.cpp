@@ -1,16 +1,17 @@
 #include <game/entities/Enemy.hpp>
 
 void Enemy::onInit() {
-    getSprite().loadFrom("assets/sprites/enemies/ship1.png");
+    getSprite().loadFrom(preset.skinPath);
     getSprite().alignCenter();
     getSprite().setRotation(90);
-    getSprite().setScale(2.f, 2.f);
+    getSprite().setScale(preset.scale);
 
     shakeEffect = new ShakeEffect(200.f);
     shakeEffect->addSprite(getSprite());
 
-    hp = 100;
-    healthBar.setMax(100);
+    hp = preset.maxHP;
+    healthBar.onInit();
+    healthBar.setMax(hp);
     healthBar.setValue(hp);
 
     healthBar.setSize({getSprite().getLocalBounds().width * 2, 7});
@@ -36,9 +37,8 @@ void Enemy::onCollision(GameObject *object) {
         shakeEffect->start();
         healthBar.add(-10);
         if (healthBar.getValue() <= 0) {
-            Blast& blast = static_cast<Blast&>(spawn(new Blast));
+            auto& blast = spawn(new Blast(preset.blast));
             blast.getSprite().setPosition(getSprite().getPosition());
-            blast.getSprite().setScale(3, 3);
             destroy(this);
         }
     }

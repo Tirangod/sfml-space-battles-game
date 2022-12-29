@@ -33,9 +33,9 @@ void Scenes::SetScene(int index) {
     if (index < 0 || index == Get().scenes.size())
         index = 0;
 
-    auto &prev = GetCurrent();
+    auto& prev = GetCurrent();
     Get().sceneIndex = index;
-    auto &next = GetCurrent();
+    auto& next = GetCurrent();
     prev._changed(next);
     next._init();
 }

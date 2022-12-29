@@ -11,6 +11,12 @@ UIButton::UIButton() {
     selectSound.loadFrom("assets/audio/sounds/ui/choose_sound.wav");
     clickSound.setVolume(50.f);
     selectSound.setVolume(50.f);
+
+    text.loadFont("assets/fonts/font_light.ttf");
+
+    getBackground().setFillColor(startColor);
+    getBackground().setOutlineThickness(5.f);
+    getBackground().setOutlineColor(Color::Transparent);
 }
 
 void UIButton::onInit() {
@@ -19,16 +25,10 @@ void UIButton::onInit() {
     clickEffect = new RampEffect(startColor, clickColor);
     clickEffect->setEasingFunc(Effect::EaseOutExpo);
     clickEffect->setDuration(seconds(0.4f));
-    clickEffect->addShape(getBackground());
+    clickEffect->addUIComponent(*this);
     clickEffect->setOnFinish([&]{
         getBackground().setFillColor(startColor);
     });
-
-    text.loadFont("assets/fonts/font_light.ttf");
-
-    getBackground().setFillColor(startColor);
-    getBackground().setOutlineThickness(5.f);
-    getBackground().setOutlineColor(Color::Transparent);
 }
 void UIButton::onDraw(RenderTarget& target) {
     target.draw(icon);
@@ -58,6 +58,14 @@ void UIButton::alignTextCenter() {
 void UIButton::onUpdateTransform() { 
     icon.setPosition(getPosition() + padding);
     text.setPosition(getPosition() + padding);
+}
+
+void UIButton::setColor(Color color) {
+    startColor = color;
+}
+
+void UIButton::setClickColor(Color color) {
+    clickColor = color;
 }
 
 void UIButton::setOnClick(VoidCallback callback) {

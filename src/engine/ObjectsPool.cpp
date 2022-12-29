@@ -19,7 +19,7 @@ void ObjectsPool::AddObject(GameObject *object) {
 }
 
 void ObjectsPool::RemoveObject(GameObject *object) {
-    auto &self = Get();
+    auto& self = Get();
 
     object->disable();
     object->onKilled();
@@ -35,7 +35,7 @@ void ObjectsPool::RemoveObject(GameObject *object) {
 }
 
 void ObjectsPool::RemoveAll() {
-    auto &self = Get();
+    auto& self = Get();
 
     for (auto it = self.objects.begin(); it != self.objects.end(); ++it) {
         RemoveObject(*it);
@@ -43,7 +43,7 @@ void ObjectsPool::RemoveAll() {
 }
 
 void ObjectsPool::ResolveAdded() {
-    auto &self = Get();
+    auto& self = Get();
 
     int lastIndex = 0;
     
@@ -62,7 +62,7 @@ void ObjectsPool::ResolveAdded() {
 }
 
 void ObjectsPool::ResolveDeleted() {
-    auto &self = Get();
+    auto& self = Get();
 
     for (auto it = self.deleted.begin(); it != self.deleted.end(); ++it) {
         delete *it;

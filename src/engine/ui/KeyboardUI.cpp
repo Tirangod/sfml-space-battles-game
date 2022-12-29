@@ -26,17 +26,35 @@ void KeyboardUI::addComp(UIComponent& comp) {
     comps.push_back(&comp);
 }
 
+void KeyboardUI::addCompsGroup(CompsGroup& group) {
+    group.applyTransforms();
+    
+    auto& groupComps = group.getComponents();
+    for (int i = 0; i < groupComps.size(); i++) {
+        addComp(*groupComps[i]);
+    }
+}
+
 void KeyboardUI::select(int index) {
     if (!comps.empty())
         comps[compIndex]->unselect(); //unselect prev comp
 
-    if (index >= comps.size())
+    if (index >= comps.size()) {
+        /*
+        cout << "cond: " << (index >= comps.size() ? "true" : "false")  << endl;
+        cout << "index1: " << index << endl;
+        cout << "size: " << comps.size() << endl;
+        cout << "test: " << (-1 >= 3) << endl;
+        */
         index = 0;
-    else if (index <= -1)
+    } else if (index == -1) {
         index = comps.size() - 1;
+    }
     
+    //TODO: fix
     if (!comps[index]->isSelectable()) {
         select(index + 1);
+        cout << "select: unselectable" << endl;
         return;
     }
 

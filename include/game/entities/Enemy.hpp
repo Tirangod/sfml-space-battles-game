@@ -9,9 +9,16 @@
 #include "engine/GameObject.hpp"
 #include "game/entities/Blast.hpp"
 #include "game/entities/Bullet.hpp"
+#include "game/Presets.hpp"
+
+using namespace Presets;
+using namespace std;
+using namespace sf;
 
 class Enemy : public GameObject {
 private:
+    EnemyInfo preset;
+
     Vector2f moveDir;
     float speed;
     float hp;
@@ -20,7 +27,7 @@ private:
 
     UIProgressBar healthBar;
 public:
-    Enemy() {}
+    Enemy(EnemyInfo preset) : preset(preset) {}
     void onInit();
     void onCollision(GameObject *object);
     void onUpdate(float dt);

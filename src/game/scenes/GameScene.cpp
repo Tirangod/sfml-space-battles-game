@@ -8,7 +8,7 @@ void GameScene::onInit() {
     ObjectsPool::AddObject(player);
 
     for (int i = 0; i < 5; i++) {
-        Enemy *enemy = new Enemy;
+        Enemy *enemy = new Enemy(Presets::Enemy0);
         enemy->getSprite().setPosition({(float)(150 + 150 * i), 150.f});
         ObjectsPool::AddObject(enemy);
     }
@@ -18,6 +18,9 @@ void GameScene::onInit() {
 
 void GameScene::onUpdate(float dt) {
     ui.update(dt);
+
+    if (Keyboard::isKeyPressed(Keyboard::Backspace))
+        Scenes::SetScene(1);
 }
 
 void GameScene::onDraw(RenderTarget& target) {
