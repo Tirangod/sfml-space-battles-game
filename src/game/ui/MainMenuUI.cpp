@@ -50,6 +50,7 @@ void MainMenuUI::onInit() {
     group.alignCenter();
 
 
+    /*
     fullscreenBtn.setIcon("assets/icons/rect.png");
     fullscreenBtn.getIcon().alignCenter();
     fullscreenBtn.getIcon().setScale(2.5f, 2.5f);
@@ -72,7 +73,7 @@ void MainMenuUI::onInit() {
     uiVolumeBtn.getIcon().alignCenter();
     uiVolumeBtn.getIcon().setScale(2.5f, 2.5f);
     uiVolumeBtn.setSize({80, 80});
-    uiVolumeBtn.setPadding(uiVolumeBtn.getSize() / 2.f);
+    uiVolumeBtn.setPadding(uiVolumeBtn.getSize() / 2.f); 
 
     prefGroup.setPosition({100, 100});
     prefGroup.setMargin({90, 0});
@@ -80,10 +81,10 @@ void MainMenuUI::onInit() {
     prefGroup.add(musicVolumeBtn);
     prefGroup.add(effectsVolumeBtn);
     prefGroup.add(uiVolumeBtn);
-
+    */
     addComp(play);
     addComp(pref);
-    addCompsGroup(prefGroup);
+    //addCompsGroup(prefGroup);
     /*addComp(fullscreenBtn);
     addComp(musicVolumeBtn);
     addComp(effectsVolumeBtn);

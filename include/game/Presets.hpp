@@ -116,7 +116,7 @@ static PlayerInfo Player1{
     "assets/audio/sounds/fire/fire1.wav",
     130.f,
     380.f,
-    35.f
+    65.f
 };
 static PlayerInfo Player2{
     Bullet2,
@@ -124,7 +124,7 @@ static PlayerInfo Player2{
     "assets/audio/sounds/fire/fire2.wav",
     150.f,
     400.f,
-    25.f
+    35.f
 };
 static PlayerInfo Player3{
     Bullet3,
@@ -132,7 +132,7 @@ static PlayerInfo Player3{
     "assets/audio/sounds/fire/fire3.wav",
     170.f,
     350.f,
-    10.f
+    90.f
 };
 
 

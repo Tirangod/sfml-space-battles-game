@@ -68,14 +68,14 @@ void SkinsUI::onInit() {
         fadeOut->start(); 
         Player::Preset = Presets::Player3;
     });
-
+    /*
     text.loadFont("assets/fonts/font_bold.ttf");
     text.setString("SomeText");
     text.setFontSize(100);
     text.getText().setFillColor(Color::White);
     text.alignCenter();
     text.setPosition({GameWindow::GetSizef().x / 2.f, 80.f});
-
+    */
     group.setMargin({220, 0});
     group.setPosition(GameWindow::GetSizef() / 2.f);
     group.add(skin0);
@@ -85,7 +85,7 @@ void SkinsUI::onInit() {
     group.alignCenter();
 
     addCompsGroup(group);
-    addComp(text);
+    //addComp(text);
     addComp(panel);
 }
 void SkinsUI::onUpdate(float dt) {
