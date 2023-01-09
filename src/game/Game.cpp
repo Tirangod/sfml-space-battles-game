@@ -22,6 +22,9 @@ void Game::run() {
     d.printMessage("Message 0");
     Date d1 = d + Date(3, 2, 1);
     d1.printMessage("Message 1");
+    d1++++++;
+    d1.printMessage("Message 1.1");
+    cout << "month: " << d1[1] << endl;
     
     float dt = 0;
 
