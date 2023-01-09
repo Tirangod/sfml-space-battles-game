@@ -24,6 +24,17 @@
         "functional": "cpp",
         "utility": "cpp",
         "istream": "cpp",
-        "type_traits": "cpp"
+        "type_traits": "cpp",
+        "atomic": "cpp",
+        "complex": "cpp",
+        "system_error": "cpp",
+        "typeindex": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "iterator": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "stop_token": "cpp",
+        "streambuf": "cpp"
     }
 }

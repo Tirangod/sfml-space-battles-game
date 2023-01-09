@@ -92,5 +92,3 @@ bool GameObject::isActive() { return active; }
 bool GameObject::isVisible() { return visible; }
 FloatRect GameObject::getBounds() { return sprite.getGlobalBounds(); }
 GameSprite& GameObject::getSprite() { return sprite; }
-
-

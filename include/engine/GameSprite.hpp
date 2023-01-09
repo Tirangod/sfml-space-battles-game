@@ -25,7 +25,7 @@ public:
     void alignY();
 
     void loadFrom(string path);
-    void create(Vector2u sizd);
+    void create(Vector2u size);
 
     FloatRect getBounds();
     bool isSet();

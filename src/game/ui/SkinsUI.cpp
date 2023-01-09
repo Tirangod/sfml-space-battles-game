@@ -17,7 +17,7 @@ void SkinsUI::onInit() {
     });
 
     
-    skin0.setIcon(Presets::Player0.skinPath);
+    skin0.setIcon(Presets::PlayerBlue.skinPath);
     skin0.getIcon().alignCenter();
     skin0.getIcon().setScale(2.5f, 2.5f);
     skin0.getBackground().setFillColor(Color::Transparent);
@@ -27,10 +27,10 @@ void SkinsUI::onInit() {
     skin0.setPadding(skin0.getSize() / 2.f);
     skin0.setOnClick([&]{ 
         fadeOut->start(); 
-        Player::Preset = Presets::Player0;
+        Player::Preset = Presets::PlayerBlue;
     });
     
-    skin1.setIcon(Presets::Player1.skinPath);
+    skin1.setIcon(Presets::PlayerYellow.skinPath);
     skin1.getIcon().alignCenter();
     skin1.getIcon().setScale(2.5f, 2.5f);
     skin1.getBackground().setFillColor(Color::Transparent);
@@ -40,10 +40,10 @@ void SkinsUI::onInit() {
     skin1.setPadding(skin1.getSize() / 2.f);
     skin1.setOnClick([&]{ 
         fadeOut->start(); 
-        Player::Preset = Presets::Player1;
+        Player::Preset = Presets::PlayerYellow;
     });
     
-    skin2.setIcon(Presets::Player2.skinPath);
+    skin2.setIcon(Presets::PlayerRed.skinPath);
     skin2.getIcon().alignCenter();
     skin2.getIcon().setScale(2.5f, 2.5f);
     skin2.getBackground().setFillColor(Color::Transparent);
@@ -53,10 +53,10 @@ void SkinsUI::onInit() {
     skin2.setPadding(skin2.getSize() / 2.f);
     skin2.setOnClick([&]{ 
         fadeOut->start(); 
-        Player::Preset = Presets::Player2;
+        Player::Preset = Presets::PlayerRed;
     });
 
-    skin3.setIcon(Presets::Player3.skinPath);
+    skin3.setIcon(Presets::PlayerGreen.skinPath);
     skin3.getIcon().alignCenter();
     skin3.getIcon().setScale(2.5f, 2.5f);
     skin3.getBackground().setFillColor(Color::Transparent);
@@ -66,7 +66,7 @@ void SkinsUI::onInit() {
     skin3.setPadding(skin3.getSize() / 2.f);
     skin3.setOnClick([&]{ 
         fadeOut->start(); 
-        Player::Preset = Presets::Player3;
+        Player::Preset = Presets::PlayerGreen;
     });
     /*
     text.loadFont("assets/fonts/font_bold.ttf");

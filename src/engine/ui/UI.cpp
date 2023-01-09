@@ -1,18 +1,18 @@
-#include <engine/ui/KeyboardUI.hpp>
+#include <engine/ui/UI.hpp>
 
-void KeyboardUI::init() {
+void UI::init() {
     compIndex = 0;
     onInit();
     select(0);
 }
 
-void KeyboardUI::draw(RenderTarget& target) {
+void UI::draw(RenderTarget& target) {
     for (int i = 0; i < comps.size(); i++) {
         comps[i]->_draw(target);
     }
     onDraw(target);
 }
-void KeyboardUI::update(float dt) {
+void UI::update(float dt) {
     for (int i = 0; i < comps.size(); i++) {
         if (i == compIndex)
             comps[i]->_whileSelected(dt);
@@ -21,12 +21,12 @@ void KeyboardUI::update(float dt) {
     onUpdate(dt);
 }
 
-void KeyboardUI::addComp(UIComponent& comp) {
+void UI::addComp(UIComponent& comp) {
     comp._init();
     comps.push_back(&comp);
 }
 
-void KeyboardUI::addCompsGroup(CompsGroup& group) {
+void UI::addCompsGroup(CompsGroup& group) {
     group.applyTransforms();
     
     auto& groupComps = group.getComponents();
@@ -35,7 +35,7 @@ void KeyboardUI::addCompsGroup(CompsGroup& group) {
     }
 }
 
-void KeyboardUI::select(int index) {
+void UI::select(int index) {
     if (!comps.empty())
         comps[compIndex]->unselect(); //unselect prev comp
 
@@ -61,10 +61,10 @@ void KeyboardUI::select(int index) {
     compIndex = index;
 }
 
-void KeyboardUI::selectNext() {
+void UI::selectNext() {
     select(getIndex() + 1);
 }
 
-int KeyboardUI::getIndex() {
+int UI::getIndex() {
     return compIndex;
 }

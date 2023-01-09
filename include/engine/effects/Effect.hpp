@@ -50,6 +50,11 @@ public:
     void addUIComponent(UIComponent& comp);
     void addCompsGroup(CompsGroup& group);
 
+    Effect& operator +=(GameSprite& sprite);
+    Effect& operator +=(Shape& shape);
+    Effect& operator +=(UIComponent& comp);
+    Effect& operator +=(CompsGroup& group);
+
     void setRepeated(bool flag);
     void setDuration(Time duration);
     void setEasingFunc(EasingFunc func);

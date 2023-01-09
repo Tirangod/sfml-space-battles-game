@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
@@ -11,6 +12,7 @@
 #include "engine/GameWindow.hpp"
 #include "engine/KeyEvents.hpp"
 #include "engine/Scenes.hpp"
+#include "engine/Date.hpp"
 #include "game/scenes/SkinsScene.hpp"
 #include "game/scenes/MenuScene.hpp"
 #include "game/scenes/GameScene.hpp"

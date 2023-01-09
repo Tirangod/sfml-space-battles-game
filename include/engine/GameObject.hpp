@@ -58,4 +58,5 @@ public:
     GameSprite& getSprite();
 };
 
+
 #endif

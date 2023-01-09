@@ -5,7 +5,7 @@
 #include "engine/effects/RampEffect.hpp"
 #include "engine/ui/UIComponent.hpp"
 #include "engine/ui/CompsGroup.hpp"
-#include "engine/ui/KeyboardUI.hpp"
+#include "engine/ui/UI.hpp"
 #include "engine/ui/UIButton.hpp"
 #include "engine/ui/UIText.hpp"
 #include "engine/GameWindow.hpp"
@@ -17,7 +17,7 @@
 using namespace std;
 using namespace sf;
 
-class SkinsUI : public KeyboardUI {
+class SkinsUI : public UI {
 private:
     UIText text;
 

@@ -70,6 +70,11 @@ void MenuScene::onInit() {
 void MenuScene::onUpdate(float dt) {
     //scale->update(dt);
     ui.update(dt);
+
+    if (KeyEvents::isKeyPressed(Keyboard::U))
+        gameNameCaption.loadFrom("assets/caption.png");
+    else if (KeyEvents::isKeyPressed(Keyboard::E))
+        gameNameCaption.loadFrom("assets/caption_en.png");
 }
 
 void MenuScene::onDraw(RenderTarget& target) {

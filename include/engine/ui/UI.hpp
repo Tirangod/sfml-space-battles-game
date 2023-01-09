@@ -1,5 +1,5 @@
-#ifndef KEYBOARDUI_HPP
-#define KEYBOARDUI_HPP
+#ifndef UI_HPP
+#define UI_HPP
 
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -11,7 +11,7 @@
 using namespace std;
 using namespace sf;
 
-class KeyboardUI {
+class UI {
 private:
     int compIndex;
     vector<UIComponent*> comps;

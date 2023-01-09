@@ -17,39 +17,39 @@ struct BlastInfo {
     Time animDuration;
 };
 
-static BlastInfo Blast0{
+static BlastInfo BlastWhite{
     "assets/sprites/blast/blast_0.png",
     {1, 1},
     {6, 6},
     milliseconds(10)
 };
-static BlastInfo Blast1{
+static BlastInfo BlastRed{
     "assets/sprites/blast/blast_2.png",
     {1, 1},
     {8, 8},
     milliseconds(10)
 };
-static BlastInfo Blast2{
+static BlastInfo BlastGreen{
     "assets/sprites/blast/blast_2_1.png",
     {1, 1},
     {8, 8},
     seconds(0.5f)
 };
-static BlastInfo Blast3{
+static BlastInfo BlastBlue{
     "assets/sprites/blast/blast_2_2.png",
-    {3, 3},
+    {1, 1},
     {8, 8},
     seconds(0.5f)
 };
-static BlastInfo Blast4{
+static BlastInfo BlastYellow{
     "assets/sprites/blast/blast_2_3.png",
     {1, 1},
     {8, 8},
     seconds(0.5),
 };
-static BlastInfo Blast5{
+static BlastInfo BlastExplosion{
     "assets/sprites/blast/blast_3.png",
-    {2, 2},
+    {2.2f, 2.2f},
     {8, 8},
     seconds(0.5)
 };
@@ -63,30 +63,30 @@ struct BulletInfo {
     float damage;
 };
 
-static BulletInfo Bullet0{
-    Blast1,
+static BulletInfo BulletBlue{
+    BlastBlue,
     {0.6f, 0.6f},
-    "assets/sprites/bullets/bullet_0.png",
+    "assets/sprites/bullets/bullet_1.png",
     500.f,
     5.f
 };
-static BulletInfo Bullet1{
-    Blast2,
-    {0.6f, 0.6f},
-    "assets/sprites/bullets/bullet_8.png",
+static BulletInfo BulletYellow{
+    BlastYellow,
+    {0.4f, 0.6f},
+    "assets/sprites/bullets/bullet_7.png",
     480.f,
     10.f
 };
-static BulletInfo Bullet2{
-    Blast3,
-    {0.6f, 0.6f},
+static BulletInfo BulletRed{
+    BlastRed,
+    {0.4f, 0.6f},
     "assets/sprites/bullets/bullet_18.png",
     450.f,
     15.f
 };
-static BulletInfo Bullet3{
-    Blast4,
-    {0.6f, 0.6f},
+static BulletInfo BulletGreen{
+    BlastGreen,
+    {0.4f, 0.6f},
     "assets/sprites/bullets/bullet_12.png",
     400.f,
     25.f
@@ -102,32 +102,32 @@ struct PlayerInfo {
     float shootingDelay;
 };
 
-static PlayerInfo Player0{
-    Bullet0,
+static PlayerInfo PlayerBlue{
+    BulletBlue,
     "assets/sprites/player/blue_01.png",
     "assets/audio/sounds/fire/fire0.wav",
     110.f,
     370.f,
-    55.f
+    35.f
 };
-static PlayerInfo Player1{
-    Bullet1,
+static PlayerInfo PlayerYellow{
+    BulletYellow,
     "assets/sprites/player/orange_03.png",
-    "assets/audio/sounds/fire/fire1.wav",
+    "assets/audio/sounds/fire/fire0.wav",
     130.f,
     380.f,
     65.f
 };
-static PlayerInfo Player2{
-    Bullet2,
+static PlayerInfo PlayerRed{
+    BulletRed,
     "assets/sprites/player/red_01.png",
     "assets/audio/sounds/fire/fire2.wav",
     150.f,
     400.f,
-    35.f
+    55.f
 };
-static PlayerInfo Player3{
-    Bullet3,
+static PlayerInfo PlayerGreen{
+    BulletGreen,
     "assets/sprites/player/green_06.png",
     "assets/audio/sounds/fire/fire3.wav",
     170.f,
@@ -141,26 +141,30 @@ struct EnemyInfo {
     string skinPath;
     Vector2f scale;
     float maxHP;
+    float hpBarKY;
     //float speed;
 };
 
 static EnemyInfo Enemy0{
-    Blast3,
+    BlastExplosion,
     "assets/sprites/enemies/Ship1.png",
     {2, 2},
-    180.f
+    111.f,
+    1.5f
 };
 static EnemyInfo Enemy1{
-    Blast3,
+    BlastExplosion,
     "assets/sprites/enemies/Ship2.png",
     {1.5f, 1.5f},
-    310.f
+    333.f,
+    0.65f
 };
 static EnemyInfo Enemy2{
-    Blast3,
+    BlastExplosion,
     "assets/sprites/enemies/Ship3.png",
     {1.2f, 1.2f},
-    999.f
+    666.f,
+    0.65f
 };
 
 }

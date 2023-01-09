@@ -6,12 +6,14 @@ void MainMenuUI::onInit() {
     panel.getBackground().setFillColor(Color::Black);
 
     fadeIn = new RampEffect(Color::Black, Color::Transparent);
-    fadeIn->addShape(panel.getBackground());
+    //fadeIn->addShape(panel.getBackground());
+    *fadeIn += panel.getBackground();
     fadeIn->setDuration(seconds(1.5f));
     fadeIn->start();
 
     fadeOut = new RampEffect(Color::Transparent, Color::Black);
-    fadeOut->addShape(panel.getBackground());
+    //fadeOut->addShape(panel.getBackground());
+    *fadeOut += panel.getBackground();
     fadeOut->setDuration(seconds(1.f));
     fadeOut->setOnFinish([]{
         Scenes::SetNext();

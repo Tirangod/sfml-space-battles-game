@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "ui/KeyboardUI.hpp"
+#include "ui/UI.hpp"
 #include "ObjectsPool.hpp"
 #include "Background.hpp"
 

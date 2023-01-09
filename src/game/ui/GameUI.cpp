@@ -6,7 +6,8 @@ void GameUI::onInit() {
     //panel.setSelectable(false);
     
     fadeIn = new RampEffect(Color::Black, Color::Transparent);
-    fadeIn->addShape(panel.getBackground());
+    //fadeIn->addShape(panel.getBackground());
+    *fadeIn += panel.getBackground();
     fadeIn->setDuration(seconds(1.2f));
     fadeIn->start();
     

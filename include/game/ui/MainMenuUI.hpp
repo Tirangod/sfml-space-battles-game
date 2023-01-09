@@ -1,7 +1,7 @@
 #ifndef MAINMENUUI_HPP
 #define MAINMENUUI_HPP
 
-#include "engine/ui/KeyboardUI.hpp"
+#include "engine/ui/UI.hpp"
 #include "engine/ui/CompsGroup.hpp"
 #include "engine/ui/UIButton.hpp"
 #include "engine/ui/UIText.hpp"
@@ -13,7 +13,7 @@
 using namespace std;
 using namespace sf;
 
-class MainMenuUI : public KeyboardUI {
+class MainMenuUI : public UI {
 private:
     RampEffect *fadeIn;
     RampEffect *fadeOut;

@@ -7,9 +7,18 @@ void GameScene::onInit() {
     Player *player = new Player;
     ObjectsPool::AddObject(player);
 
-    for (int i = 0; i < 5; i++) {
-        Enemy *enemy = new Enemy(Presets::Enemy0);
-        enemy->getSprite().setPosition({(float)(150 + 150 * i), 150.f});
+    int n = 7;
+    float offsetX = 0.f, shipW = 150.f;
+    auto e = Presets::Enemy0;
+    for (int i = 0; i < n; i++) {
+        if (i == n/2) {
+            e = Presets::Enemy2;
+        } else {
+            e = Presets::Enemy0;
+        }
+        offsetX = (GameWindow::GetSizef().x - shipW * n) / 2.f;
+        Enemy *enemy = new Enemy(e);
+        enemy->getSprite().setPosition({(float)(offsetX + shipW * 0.5f + shipW * i), 110.f});
         ObjectsPool::AddObject(enemy);
     }
     
@@ -20,7 +29,7 @@ void GameScene::onUpdate(float dt) {
     ui.update(dt);
 
     if (Keyboard::isKeyPressed(Keyboard::Backspace))
-        Scenes::SetScene(1);
+        GameWindow::Shutdown();
 }
 
 void GameScene::onDraw(RenderTarget& target) {

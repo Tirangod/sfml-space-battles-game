@@ -1,11 +1,11 @@
 #include "game/entities/Player.hpp"
 
-PlayerInfo Player::Preset = Player0;
+PlayerInfo Player::Preset = PlayerBlue;
 
 void Player::onInit() {
     getSprite().loadFrom(Preset.skinPath);
     getSprite().alignCenter();
-    getSprite().setPosition(GameWindow::GetSizef() / 2.f);
+    getSprite().setPosition((GameWindow::GetSizef() / 2.f) + Vector2f{0, 100.f});
     getSprite().setScale(1.5f, 1.5f);
 
     fireSound.loadFrom(Preset.fireSoundPath);

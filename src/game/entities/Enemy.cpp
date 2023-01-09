@@ -6,8 +6,9 @@ void Enemy::onInit() {
     getSprite().setRotation(90);
     getSprite().setScale(preset.scale);
 
-    shakeEffect = new ShakeEffect(200.f);
+    shakeEffect = new ShakeEffect(175.f);
     shakeEffect->addSprite(getSprite());
+    shakeEffect->setDuration(seconds(0.35f));
 
     hp = preset.maxHP;
     healthBar.onInit();
@@ -28,7 +29,7 @@ void Enemy::onUpdate(float dt) {
     float yOffset = -getSprite().getLocalBounds().height;
     healthBar.setPosition({
         getSprite().getPosition().x - getSprite().getLocalBounds().width, 
-        getSprite().getPosition().y + yOffset * 1.5f
+        getSprite().getPosition().y + yOffset * preset.hpBarKY
     });
 }  
 
