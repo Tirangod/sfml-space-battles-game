@@ -12,29 +12,23 @@ using namespace std;
 
 class Object {
 public:
-    Object() {
-        cout << "HEllo" << endl;
-    }
-    int operator* (int i) {
-        cout << i*i << endl;
-        return i*i;
+    ~Object() {
+        cout << "Object" << endl;
     }
 };
 
 class Subject : Object {
 public:
-    Subject() {
-        cout << "FUCK" << endl;
+    ~Subject() {
+        cout << "Subject" << endl;
     }
 };
 
 int main() {
 
-    Object o;
-    Subject s;
+    auto o = new Subject;
 
-
-    o.operator*(1);
+    delete o;
 
     return EXIT_SUCCESS;
 }

@@ -9,12 +9,12 @@ Date::Date(int day, int month, int year)
     if (day > 0 && day < 32)
         this->day = day;
     else
-        this->day = 1;//throw "Day has to be in range from 1 to 31";
+        this->day = 1;//throw exception("Day has to be in range from 1 to 31");
     
     if (month > 0 && month < 13)
         this->month = month;
     else
-        this->month = 1;//throw "Month has to be in range from 1 to 12";
+        this->month = 1;//throw exception("Month has to be in range from 1 to 12");
 
     this->year = year;
 }
@@ -49,17 +49,61 @@ void Date::printMessage(string message) {
 }
     
 Date& Date::operator ++(int i) {
-    day += i;
+    auto date = Date(day, year, month);
+
+    ++(*this);
+
+    return date;
+}
+
+Date& Date::operator --(int i) {
+    auto date = Date(day, year, month);
+
+    --(*this);
+
+    return date;
+}
+
+Date& Date::operator ++() {
+    day += 1;
 
     if (day > 31) {
         day = 1;
-        month += i;
+        month += 1;
     }
 
     if (month > 12) {
         month = 1;
-        year += i;
+        year += 1;
     }
+
+    return *this;
+}
+
+Date& Date::operator --() {
+    
+    day -= 1;
+
+    if (day <= 0) {
+        day = 31;
+        month -= 1;
+    }
+
+    if (month > 12) {
+        month = 1;
+        year += 1;
+    }
+
+    return *this;
+}
+
+ostream& Date::operator <<(ostream& out) {
+    out << static_cast<string>(*this);
+    return out;
+}
+istream& Date::operator >>(istream& in) {
+    in >> day >> month >> year;
+    return in;
 }
 Date& Date::operator +(Date date0) {
     Date _new(day + date0.getDay(), month + date0.getMonth(), year + date0.getYear());
@@ -75,6 +119,19 @@ Date& Date::operator =(string value) {
 bool Date::operator >(Date& date) {
     return year > date.year || month > date.month || day > date.day;
 }
+
+bool Date::operator <(Date& date) {
+    return !(date > *this) && date != *this;
+}
+
+bool Date::operator == (Date& another) {
+    return another.day == day && another.month == month && another.year == year;
+}
+
+bool Date::operator != (Date& another) {
+    return !(another == *this);
+}
+
 int Date::operator [](int i) {
     if (i == 0)
         return day;
