@@ -1,2 +1,1 @@
-# test-team-repo
-Test repository for educational purposes
+# 🧑‍🚀 SpaceBattlesGame educational project
