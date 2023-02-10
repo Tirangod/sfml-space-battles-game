@@ -12,8 +12,8 @@ University project of OOP subject. Project divided into two modules:
 
 #### Base game mechanics
 
-![img1](readme/img1.png)
+![img2](readme/img2.png)
 
 #### Visual and sounds effects implemented
 
-![img1](readme/img1.png)
+![img3](readme/img3.png)
